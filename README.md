@@ -1,4 +1,4 @@
-# NLP_CommonsenseQA
+# NLP project on commonsenseqa datasset. 
 
 | Source  | Model Used | Accuracy  | External Knowledgebase | Extra processsing  | Error Analysis |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
