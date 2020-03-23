@@ -48,6 +48,7 @@ class CommonsenseQATask(FairseqTask):
     @classmethod
     def load_dictionary(cls, filename):
         """Load the dictionary from the filename
+
         Args:
             filename (str): the filename
         """
@@ -65,8 +66,9 @@ class CommonsenseQATask(FairseqTask):
 
         return cls(args, vocab)
 
-    def load_dataset(self, split, epoch=0, combine=False, data_path=None, return_only=False, **kwargs):
+    def load_dataset(self, split, epoch=1, combine=False, data_path=None, return_only=False, **kwargs):
         """Load a given dataset split.
+
         Args:
             split (str): name of the split (e.g., train, valid, test)
         """
