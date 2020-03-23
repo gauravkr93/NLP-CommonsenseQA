@@ -16,7 +16,31 @@ A source concept and three target concepts are picked from the ConceptNet, three
 | [RoBERTa (ensemble model), Facebook AI](https://github.com/pytorch/fairseq/tree/master/examples/roberta/commonsense_qa) | roberta.large | 72.5% | None | Finetuned RoBERTa on CommonSenseQA. Five inputs constructed for each question, one for each of the five candidate answer choices, by concatenating the question and candidate answer. Eg `<s> Q: Where would I not want a fox? </s> A: hen house </s>` | N/A |
 | [RoBERTa + IR (single model), Microsoft STCA-NLP team](https://1drv.ms/b/s!Aq1PIOBthMoKblvGqds3CzR451k?e=Yg6P94) | roberta.large | 72.1% | [RACE Dataset](https://www.cs.cmu.edu/~glai1/data/race/) | Finetune RoBERTa large model on the RACE dataset by concatenating passage, question and answer choice as `<s> <context tokens> </s> <question tokens> </s> <choice tokens> </s>`. Retrieve context information for each question of CommonsenseQA through search engine, and further finetune on train data. | N/A |
 |HyKAS (single model), Bosch Research and Technology Center (Pittsburgh) | HyKAS | 62.5% | ConceptNet, ATOMIC | Included domain specific knowledge in order to improve the accuracy of the model. | The model is not very successful in the choice of the knowledge base depending upon the type of questions. Also it cannot handle antonym or negation sentences well. |
-  
+ 
+## XLNET vs BERT for CommonsenseQA dataset
+XLNET is an AR(Auto Regressive) Model better for generative tasks, does not leverage the bi directionality of AE(Auto Encoder Models) like BERT. Since BERT assumes independence between masked data in masked LM phase. Hence, BERT is better suited for QA tasks than compared to XLNET. 
+
+## Graph-Based approaches to use external knowledge base.
+[Research Paper Referred - Graph-Based Reasoning over Heterogeneous External Knowledge for Commonsense Question Answering](https://arxiv.org/pdf/1909.05311.pdf)
+
+### Summary
+The knowledge base used in this paper was ConceptNet(a structured knowledge base) and Wikipedia(unstructured). A total 107M sentences from Wikipedia was extracted by Spacy and was indexed by the use of Elastic Search tools. The prediction was a two step approach.
+
+#### Graph-Based Contextual Representation Learning Module
+A simple way to get the representation of each word is to concatenate all the evidence as a single sequence and feed the raw input into XLNet. However, this would assign a long distance for the words mentioned in different evidence sentences, even though they are semantically related. Therefore, graph structure was used to re-define the relative position between evidence words(topology sort). In
+this way, semantically related words will have shorter relative position and the internal relational structures in evidence are used to obtain better contextual word representations.
+
+For Wikipedia sentences,a sentence graph was constructed. The evidence sentences S are nodes in the graph. For two sentences si and sj , if there is anedge (p, q) in Wiki-Graph where p, q are in si and sj respectively, there will be an edge (si, sj ) in the sentence graph. Sorted evidence sequence S' is achieved by the method in Algorithm 1(refer the paper). 
+
+For ConceptNet, the relation template provided by ConceptNet was used to transfer a triple into a natural language text sentence. For example, “mammals HasA hair” will be transferred to “mammals has hair”. In this way, we can get a set of sentences ST based on the triples in the extracted graph. Then we can get the re-ordered evidence for ConceptNet ST' with the method shown in Algorithm 1(refer the paper).
+
+#### Graph-Based Inference Module
+The XLNet-based model mentioned in the previous subsection provides effective word-level clues for making the prediction. Beyond that, the graph provides more semantic level information of evidence at a more abstract layer, such as the subject/object of a relation.
+
+A more desirable way is to aggregate evidence at the graph-level to make the final prediction. Specifically, we regard the two evidence graphs ConceptGraph and Wiki-Graph as one graph and adopt Graph Convolutional Networks ([GCNs](https://towardsdatascience.com/how-to-do-deep-learning-on-graphs-with-graph-convolutional-networks-7d2250723780)) (Kipf and Welling 2016) to obtain node representations by encoding graph-structural information.
+
+In order to reason over the graph, we propagate information across evidence via two steps: aggregation and combination. The concatenated input representation hc with the graph representation hg as the input of a Multi-Layer Perceptron(MLP) to compute the confidence score score(q, a). The probability of the answer candidate a to the question a can be computed as follows, where A is the set of candidate answers.
+
 ##Tasks established
 
 Shatrughan-
