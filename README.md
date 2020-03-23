@@ -47,6 +47,8 @@ https://staff.fnwi.uva.nl/m.derijke/Publications/Files/ecir2008-nenormalization.
 
 https://etd.ohiolink.edu/pg_10?0::NO:10:P10_ACCESSION_NUM:osu1388065704
 
-
+## Error Analysis
+The objective of this task was to manually analyse the predictions against the expected outputs to infer any information that would suggest why the predictions do not align with the correct output. There are about 267 samples that were wrongly predicted.
+ 
   
   
