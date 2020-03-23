@@ -18,6 +18,7 @@ A source concept and three target concepts are picked from the ConceptNet, three
 |HyKAS (single model), Bosch Research and Technology Center (Pittsburgh) | HyKAS | 62.5% | ConceptNet, ATOMIC | Included domain specific knowledge in order to improve the accuracy of the model. | The model is not very successful in the choice of the knowledge base depending upon the type of questions. Also it cannot handle antonym or negation sentences well. |
   
 ##Tasks established
+
 Shatrughan-
 
 Vasudha-
