@@ -48,7 +48,7 @@ https://staff.fnwi.uva.nl/m.derijke/Publications/Files/ecir2008-nenormalization.
 https://etd.ohiolink.edu/pg_10?0::NO:10:P10_ACCESSION_NUM:osu1388065704
 
 ## Baseline model - [RoBERTa, Facebook AI](https://github.com/pytorch/fairseq/tree/master/examples/roberta/commonsense_qa)
-We were successful in executing the code provided and getting an accuracy similar to theirs.
+We were successful in executing the code provided and getting an accuracy similar to theirs in the dev dataset.
 
 Upload the `CommonsenseQA` folder as a zip and follow the notebook [`CSQA_Roberta.ipynb`](CSQA_Roberta.ipynb) to finetune and evaluate the model.
 
