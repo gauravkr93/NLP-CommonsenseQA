@@ -56,3 +56,4 @@ If you want to simply evaluate the model, download the [checkpoint file](https:/
 
 ### Error Analysis
 The objective of this task was to manually analyse the predictions against the expected outputs to infer any information that would suggest why the predictions do not align with the correct output. There are about 267 samples that were wrongly predicted.
+Manual analysis involved marking the questions with relevant information that we inferred from just looking at the questions and options. We also did POS tagging for identifying possible patterns with location based questions. We made use of NER, nltk and geotext to gather the proper nouns for our inferences.
