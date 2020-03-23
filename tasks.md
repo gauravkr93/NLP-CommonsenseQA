@@ -8,7 +8,9 @@
 - Error Analysis(100 samples)
 
 ## Praveen
-
+- Analysis of the baseline model and two additional models from the leaderboard
+- Read papers about deploying Information Retreival for Question Answering systems(QA)
+- Error Analysis(25 samples)
 ## Shatrughn
 - Worked on getting the baseline code running. We are getting similar accuracy in the dev dataset as the referenced code.
 - Read about PyTorch and how the implementation of a model works in it.
