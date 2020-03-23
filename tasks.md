@@ -1,6 +1,7 @@
 # Tasks for members
 ## Gaurav
 - Analysis of two Models from the leaderboard
+- Read few papers on understanding BERT, explored other model types like XLNET.
 - Graph Based Reasoning for using external knowledge sources
 - Error Analysis(20 samples)
 
