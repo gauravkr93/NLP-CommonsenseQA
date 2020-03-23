@@ -21,3 +21,10 @@
       - Some of the questions (4/20) seem to missing some general knowledge about specific topics. Pulling them from some knowledge base and finetuning the model may yield better results.
 
 ## Shafali
+a) Ran the baseline code to understand and evaluate the model we are working on.
+b)  Did Error Analysis for 75 samples
+ - Manual analysis was done and Question Domains were added along with Comments based on what information was gathered just by looking at    the question and options.
+ - Wrote a little script to perform POS tagging on the questions and the options to gather more information on the location based         question.
+ - Used nltk and geotext libraries to perform the analysis based on NNP tags.
+ - Wrote a little script to calculate if we can draw some inference based on word count of the questions.
+c) Read a few articles to familiarize myself with the working of BERT.
