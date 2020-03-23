@@ -41,19 +41,10 @@ A more desirable way is to aggregate evidence at the graph-level to make the fin
 
 In order to reason over the graph, we propagate information across evidence via two steps: aggregation and combination. The concatenated input representation hc with the graph representation hg as the input of a Multi-Layer Perceptron(MLP) to compute the confidence score score(q, a). The probability of the answer candidate a to the question a can be computed as follows, where A is the set of candidate answers.
 
-##Tasks established
+Papers regarding Information Retrieval method for Question Answering System
 
-Shatrughan-
-
-Vasudha-
-
-Shafali-
-
-Gaurav-
-
-Praveen- 
-Read papers regarding Information Retrieval method for Question Answering System
 https://staff.fnwi.uva.nl/m.derijke/Publications/Files/ecir2008-nenormalization.pdf
+
 https://etd.ohiolink.edu/pg_10?0::NO:10:P10_ACCESSION_NUM:osu1388065704
 
 
