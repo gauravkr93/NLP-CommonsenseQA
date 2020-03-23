@@ -47,8 +47,12 @@ https://staff.fnwi.uva.nl/m.derijke/Publications/Files/ecir2008-nenormalization.
 
 https://etd.ohiolink.edu/pg_10?0::NO:10:P10_ACCESSION_NUM:osu1388065704
 
-## Error Analysis
+## Baseline model - [RoBERTa, Facebook AI](https://github.com/pytorch/fairseq/tree/master/examples/roberta/commonsense_qa)
+We were successful in executing the code provided and getting an accuracy similar to theirs.
+
+Upload the `CommonsenseQA` folder as a zip and follow the notebook [`CSQA_Roberta.ipynb`](CSQA_Roberta.ipynb) to finetune and evaluate the model.
+
+If you want to simply evaluate the model, download the [checkpoint file](https://drive.google.com/open?id=10PCeHt9yhn-Q6cJxRHQf4CNnwxRvrxNt) and place it in `CommonsenseQA/fairseq/checkpoints` folder. And then execute the relevant cell in the notebook.
+
+### Error Analysis
 The objective of this task was to manually analyse the predictions against the expected outputs to infer any information that would suggest why the predictions do not align with the correct output. There are about 267 samples that were wrongly predicted.
- 
-  
-  
