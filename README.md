@@ -16,3 +16,21 @@ A source concept and three target concepts are picked from the ConceptNet, three
 | [RoBERTa (ensemble model), Facebook AI](https://github.com/pytorch/fairseq/tree/master/examples/roberta/commonsense_qa) | roberta.large | 72.5% | None | Finetuned RoBERTa on CommonSenseQA. Five inputs constructed for each question, one for each of the five candidate answer choices, by concatenating the question and candidate answer. Eg `<s> Q: Where would I not want a fox? </s> A: hen house </s>` | N/A |
 | [RoBERTa + IR (single model), Microsoft STCA-NLP team](https://1drv.ms/b/s!Aq1PIOBthMoKblvGqds3CzR451k?e=Yg6P94) | roberta.large | 72.1% | [RACE Dataset](https://www.cs.cmu.edu/~glai1/data/race/) | Finetune RoBERTa large model on the RACE dataset by concatenating passage, question and answer choice as `<s> <context tokens> </s> <question tokens> </s> <choice tokens> </s>`. Retrieve context information for each question of CommonsenseQA through search engine, and further finetune on train data. | N/A |
 |HyKAS (single model), Bosch Research and Technology Center (Pittsburgh) | HyKAS | 62.5% | ConceptNet, ATOMIC | Included domain specific knowledge in order to improve the accuracy of the model. | The model is not very successful in the choice of the knowledge base depending upon the type of questions. Also it cannot handle antonym or negation sentences well. |
+  
+##Tasks established
+Shatrughan-
+
+Vasudha-
+
+Shafali-
+
+Gaurav-
+
+Praveen- 
+Read papers regarding Information Retrieval method for Question Answering System
+https://staff.fnwi.uva.nl/m.derijke/Publications/Files/ecir2008-nenormalization.pdf
+https://etd.ohiolink.edu/pg_10?0::NO:10:P10_ACCESSION_NUM:osu1388065704
+
+
+  
+  
