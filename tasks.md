@@ -15,8 +15,8 @@
 - Error Analysis:
     - Worked on 100 samples manually to analyse where the model fails.
     - Most of the questions were Location related. Locations mostly are not specific but are general like 'on microwave' etc. So extracting proper nouns might not work.
-    - Like around 60 percent of the cases had the second best option as the answer.
-    - Some questions made no sense. Ex: What do people with what is most likely to do what?
+    - Around 60 percent of the cases had the second best option as the answer.
+    - Some questions made no sense. Ex: What do people with what is most likely to do what?. Cannot do anything for such questions.
     - Questions with not are also to be dealt properly.
     - Questions with negation are also to be taken care of.
 
