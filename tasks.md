@@ -14,7 +14,8 @@
 - Read about Pytorch.
 - Error Analysis:
     - Worked on 100 samples manually to analyse where the model fails.
-    - Most of the questions were Location related. Locations mostly are not specific but are general like 'on microwave' etc. So extracting proper nouns might not work.
+    - Most of the questions were Location related. Locations mostly are not specific but are general like 'on microwave' etc. So extracting proper nouns might not work. 
+    - Wrote a code to detect the number of location questions (considered it a location question if it had 'Where' or 'where'. There were 356 such questions, out of which 81 were predicted wrong and 51 out of those 81 had second best option as the answer.
     - Around 60 percent of the cases had the second best option as the answer.
     - Some questions made no sense. Ex: What do people with what is most likely to do what?. Cannot do anything for such questions.
     - Questions with not are also to be dealt properly.
