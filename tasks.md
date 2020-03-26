@@ -22,6 +22,8 @@
 
 ## Praveen
 - Analysis of the baseline model and two additional models from the leaderboard
+- Read few papers for understanding BERT
+- Read about PyTorch 
 - Read papers about deploying Information Retreival for Question Answering systems(QA)
 - Error Analysis(25 samples)
 ## Shatrughn
