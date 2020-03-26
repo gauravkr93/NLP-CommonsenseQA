@@ -1,16 +1,20 @@
 # Tasks for members
 ## Gaurav
-- Analysis of two Models from the leaderboard
+- Analysis of two models from the leaderboard, along with the analysis of the baseline model.
 - Read few papers on understanding BERT, explored other model types like XLNET.
-- Graph Based Reasoning for using external knowledge sources
+- Graph Based Reasoning.
+- Explored methods to incorporate external knowledge to deal with the error scenarios.
 - Error Analysis(20 samples)
+    - Found one question answer, where predicted answer was more correct than the actual answer.
+    - Found a couple questions, where questions where not paraphrased properly.
+    - For most of the questions, the model was lacking knowledge of that context.
 
 ## Vasudha
 - Analysis of Baseline Models.
 - Analysis of two additional Models from the leaderboard.
 - Worked on nltk and geotext libraries to extract proper nouns for location specific details.
 - Read about BERT.
-- Read the overview of grqaph based knowledge base.
+- Read the overview of graph based knowledge base.
 - Read about Pytorch.
 - Error Analysis:
     - Worked on 100 samples manually to analyse where the model fails.
