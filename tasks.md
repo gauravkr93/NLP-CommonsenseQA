@@ -44,9 +44,16 @@
 
 ## Shafali
 - Ran the baseline code to understand and evaluate the model we are working on.
+- Analysis of Baseline Models.
+- Analysis of one additional Model from the leaderboard.
 - Did Error Analysis for 75 samples
  - Manual analysis was done and Question Domains were added along with Comments based on what information was gathered just by looking at    the question and options.
- - Wrote a little script to perform POS tagging on the questions and the options to gather more information on the location based         question.
+ - Wrote a little script to perform POS tagging on the questions and the options to gather more information on the location based            question.
  - Used nltk and geotext libraries to perform the analysis based on NNP tags.
  - Wrote a little script to calculate if we can draw some inference based on word count of the questions.
 - Read a few articles to familiarize myself with the working of BERT.
+- Studied a few blogs/articles/research papers on what external knowledgebase we can use to improve our model. Discussed upon knowledge bases like COS-E,QA-SRL BANK,CODAH in the meeting with Kuntal.
+- Worked on understanding datasets suggested by Kuntal that we can refer for the aforementioned purpose. Few of the datasets I looked into were Openbookqa, arc, OMCS, verbphysics, webchild and wikitext. Given the inferences we gathered from error analysis I thought we could make use of verb physics dataset given how it has mapping for different object pairs. 
+- Worked on how to introduce verb physics to our model. Refered a few papers on how external knowledgebase can be added and came up with two approaches (need to clarify on the update call).
+- Read a few papers on a few other dataset used for common knowledge extraction with included majorly on SWAG dataset.
+- Noticed that verb physics eventually ight not solve the problems because the pairings of objects are not relevant majorly to our model. However, accuracy can be improved if we take objects out of the questions and append additional information for those objects to our concept. For eg. If we some how can take the information for the object from wiki and use it.(need to discuss on the call).
