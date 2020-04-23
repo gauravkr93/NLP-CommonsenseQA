@@ -24,6 +24,8 @@
     - Some questions made no sense. Ex: What do people with what is most likely to do what?. Cannot do anything for such questions.
     - Questions with not are also to be dealt properly.
     - Questions with negation are also to be taken care of.
+    - Used nltk and geotext libraries to perform the analysis based on NNP tags.
+- Studied a paper on ARC dataset. However, this might not help more as it does not have much information about objects and their locations. ARC dataset has mainly information about Scientific data which might not help our usecase.
 
 ## Praveen
 - Analysis of the baseline model and two additional models from the leaderboard
