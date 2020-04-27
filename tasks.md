@@ -31,8 +31,18 @@
 - Analysis of the baseline model and two additional models from the leaderboard
 - Read few papers for understanding BERT
 - Read about PyTorch 
-- Read papers about deploying Information Retreival for Question Answering systems(QA)
 - Error Analysis(25 samples)
+    - Some of the questions needed external knowledge to be answered.
+    - Some questions were contexually illogical.
+- Read papers about employing Information Retreival for Question Answering Systems
+    - The documents of interest are fetched by matching query keywords to the index of the document collection.
+    - An information retrieval-based QA system mainly follows three steps of analyzing a sentence: question processing, passage
+retrieval, and answer processing.
+    - Question processing always includes the step of classifying a sentence into answerable categories. This is to make sure that a QA system knows what type of answers are expected. 
+    - In question processing, sentences are analyzed and formed into queries. It also includes a step of classification of questions into predefined categories such as location question, person question, and so on.These categories are important because they provide necessary information for constructing answers using the correct information.
+    - Then, the relevant passages in all documents are retrieved and answers are constructed based on retrieved information during answer processing.
+    - Looked up several examples for IR based QA systems which have been implemented to get an overview of the working process.   
+
 ## Shatrughn
 - Worked on getting the baseline code running. We are getting similar accuracy in the dev dataset as the referenced code.
 - Read about PyTorch and how the implementation of a model works in it.
