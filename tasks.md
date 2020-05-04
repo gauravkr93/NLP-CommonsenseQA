@@ -47,7 +47,9 @@ retrieval, and answer processing.
     - Question processing always includes the step of classifying a sentence into answerable categories. This is to make sure that a QA system knows what type of answers are expected. 
     - In question processing, sentences are analyzed and formed into queries. It also includes a step of classification of questions into predefined categories such as location question, person question, and so on.These categories are important because they provide necessary information for constructing answers using the correct information.
     - Then, the relevant passages in all documents are retrieved and answers are constructed based on retrieved information during answer processing.
-    - Looked up several examples for IR based QA systems which have been implemented to get an overview of the working process.   
+    - Looked up several examples for IR based QA systems which have been implemented to get an overview of the working process.  
+- Looked up information regarding merging Information Retreival in Roberta model.
+- Read a paper on incorporating Information Retrieval in a multi-language Question Answering system. 
 
 ## Shatrughn
 - Worked on getting the baseline code running. We are getting similar accuracy in the dev dataset as the referenced code.
