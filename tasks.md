@@ -12,6 +12,7 @@
 - Explored Graph Based Techniques for employing external knowledge for question answering dataset, read various papers and tried various techniques, most of them being complicated, due to the limited time available dropped the approach.
 - Tried out various external knowledge sources like Atomic, Wikipedia APIs by using IR techniques to add relevant knowledge in order to answer questions.
 - Adapted the reranking algorithms for IR done on questions from the McQueen repository to suit the commonsenseQA dataset, to deal with redundant facts and ranking based on relevancy.
+- Helped Shatrughn in setting up ElasticSearch to perform IR(Information Retrieval) on external knowledge sources.
 
 
 ## Vasudha
