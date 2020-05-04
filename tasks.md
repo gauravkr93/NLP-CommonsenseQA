@@ -1,13 +1,18 @@
 # Tasks for members
 ## Gaurav
-- Analysis of two models from the leaderboard, along with the analysis of the baseline model.
-- Read few papers on understanding BERT, explored other model types like XLNET.
-- Graph Based Reasoning.
+- Performed analysis of two models from the leaderboard, along with the analysis of the baseline model.
+- Read few papers on BERT, explored other model types like XLNET.
+- Read various blogs pertaining to PyTorch library.
+- Ran the baseline model on GCP by setting up the platform and attained similar accuracy.
 - Explored methods to incorporate external knowledge to deal with the error scenarios.
 - Error Analysis(20 samples)
     - Found one question answer, where predicted answer was more correct than the actual answer.
     - Found a couple questions, where questions where not paraphrased properly.
     - For most of the questions, the model was lacking knowledge of that context.
+- Explored Graph Based Techniques for employing external knowledge for question answering dataset, read various papers and tried various techniques, most of them being complicated, due to the limited time available dropped the approach.
+- Tried out various external knowledge sources like Atomic, Wikipedia APIs by using IR techniques to add relevant knowledge in order to answer questions.
+- Adapted the reranking algorithms for IR done on questions from the McQueen repository to suit the commonsenseQA dataset, to deal with redundant facts and ranking based on relevancy.
+
 
 ## Vasudha
 - Analysis of Baseline Models.
