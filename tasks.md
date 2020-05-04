@@ -59,6 +59,13 @@ retrieval, and answer processing.
       - In some of the questions (4/20), the predicted answers seems better than the correct answer marked by the dataset.
       - Some of the question texts (2/20) have typos or grammatical errors which make them ambiguous. I believe fixing them may give us the correct answer.
       - Some of the questions (4/20) seem to missing some general knowledge about specific topics. Pulling them from some knowledge base and finetuning the model may yield better results.
+- **Phase 2**
+    - Explored various knowledgebases that could be used as external knowledge to improve results. Since we had identified location based questions in our error analysis, we zeroed on Webchild dataset to get sentences for nouns. Atomic dataset was chosen for handling few of the if-then questions that were failing.
+    - As we finally decided on the knowledgebases, Gaurav and I setup the Elasticsearch instance to ingest the datasets. Dockerfile from McQueen repo was used as a reference to setup Elasticsearch in a container.
+    - Created multiple Elasticsearch indexes by ingesting different dataset combinations for experiments.
+    - Modified some parameters to make the McQueen Roberta Concat solver run in GCP.
+    - Created a new Fairseq task (commonsense_qa_with_kb_task.py) from baseline to adapt to the McQueen dataset format. Inputs were created as question + choices + premises truncated to 512 tokens.
+    - Since almost all inputs now had 512 tokens because of concatenation of premises, the original finetuning script had to be modified to reduce the max-sentences to 2 at a time to avoid getting out of memory errors.
 
 ## Shafali
 - Ran the baseline code to understand and evaluate the model we are working on.
