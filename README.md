@@ -16,17 +16,19 @@ A source concept and three target concepts are picked from the ConceptNet, three
 | [RoBERTa (ensemble model), Facebook AI](https://github.com/pytorch/fairseq/tree/master/examples/roberta/commonsense_qa) | roberta.large | 72.5% | None | Finetuned RoBERTa on CommonSenseQA. Five inputs constructed for each question, one for each of the five candidate answer choices, by concatenating the question and candidate answer. Eg `<s> Q: Where would I not want a fox? </s> A: hen house </s>` | N/A |
 | [RoBERTa + IR (single model), Microsoft STCA-NLP team](https://1drv.ms/b/s!Aq1PIOBthMoKblvGqds3CzR451k?e=Yg6P94) | roberta.large | 72.1% | [RACE Dataset](https://www.cs.cmu.edu/~glai1/data/race/) | Finetune RoBERTa large model on the RACE dataset by concatenating passage, question and answer choice as `<s> <context tokens> </s> <question tokens> </s> <choice tokens> </s>`. Retrieve context information for each question of CommonsenseQA through search engine, and further finetune on train data. | N/A |
 |HyKAS (single model), Bosch Research and Technology Center (Pittsburgh) | HyKAS | 62.5% | ConceptNet, ATOMIC | Included domain specific knowledge in order to improve the accuracy of the model. | The model is not very successful in the choice of the knowledge base depending upon the type of questions. Also it cannot handle antonym or negation sentences well. |
- 
-## XLNET vs BERT for CommonsenseQA dataset
+
+## Phase 1 Understanding and Analysis
+
+### XLNET vs BERT for CommonsenseQA dataset
 XLNET is an AR(Auto Regressive) Model better for generative tasks, does not leverage the bi directionality of AE(Auto Encoder Models) like BERT. Since BERT assumes independence between masked data in masked LM phase. Hence, BERT is better suited for QA tasks than compared to XLNET. 
 
-## Graph-Based approaches to use external knowledge base.
+### Graph-Based approaches to use external knowledge base.
 [Research Paper Referred - Graph-Based Reasoning over Heterogeneous External Knowledge for Commonsense Question Answering](https://arxiv.org/pdf/1909.05311.pdf)
 
-### Summary
+#### Summary
 The knowledge base used in this paper was ConceptNet(a structured knowledge base) and Wikipedia(unstructured). A total 107M sentences from Wikipedia was extracted by Spacy and was indexed by the use of Elastic Search tools. The prediction was a two step approach.
 
-#### Graph-Based Contextual Representation Learning Module
+##### Graph-Based Contextual Representation Learning Module
 A simple way to get the representation of each word is to concatenate all the evidence as a single sequence and feed the raw input into XLNet. However, this would assign a long distance for the words mentioned in different evidence sentences, even though they are semantically related. Therefore, graph structure was used to re-define the relative position between evidence words(topology sort). In
 this way, semantically related words will have shorter relative position and the internal relational structures in evidence are used to obtain better contextual word representations.
 
@@ -34,7 +36,7 @@ For Wikipedia sentences,a sentence graph was constructed. The evidence sentences
 
 For ConceptNet, the relation template provided by ConceptNet was used to transfer a triple into a natural language text sentence. For example, “mammals HasA hair” will be transferred to “mammals has hair”. In this way, we can get a set of sentences ST based on the triples in the extracted graph. Then we can get the re-ordered evidence for ConceptNet ST' with the method shown in Algorithm 1(refer the paper).
 
-#### Graph-Based Inference Module
+##### Graph-Based Inference Module
 The XLNet-based model mentioned in the previous subsection provides effective word-level clues for making the prediction. Beyond that, the graph provides more semantic level information of evidence at a more abstract layer, such as the subject/object of a relation.
 
 A more desirable way is to aggregate evidence at the graph-level to make the final prediction. Specifically, we regard the two evidence graphs ConceptGraph and Wiki-Graph as one graph and adopt Graph Convolutional Networks ([GCNs](https://towardsdatascience.com/how-to-do-deep-learning-on-graphs-with-graph-convolutional-networks-7d2250723780)) (Kipf and Welling 2016) to obtain node representations by encoding graph-structural information.
@@ -47,17 +49,17 @@ https://staff.fnwi.uva.nl/m.derijke/Publications/Files/ecir2008-nenormalization.
 
 https://etd.ohiolink.edu/pg_10?0::NO:10:P10_ACCESSION_NUM:osu1388065704
 
-## Baseline model - [RoBERTa, Facebook AI](https://github.com/pytorch/fairseq/tree/master/examples/roberta/commonsense_qa)
+### Baseline model - [RoBERTa, Facebook AI](https://github.com/pytorch/fairseq/tree/master/examples/roberta/commonsense_qa)
 We were successful in executing the code provided and getting an accuracy similar to theirs in the dev dataset.
 
 Upload the `CommonsenseQA` folder as a zip and follow the notebook [`CSQA_Roberta.ipynb`](CSQA_Roberta.ipynb) to finetune and evaluate the model.
 
 If you want to simply evaluate the model, download the [checkpoint file](https://drive.google.com/open?id=10PCeHt9yhn-Q6cJxRHQf4CNnwxRvrxNt) and place it in `CommonsenseQA/fairseq/checkpoints` folder. And then execute the relevant cell in the notebook.
 
-### Error Analysis
+#### Error Analysis
 The objective of this task was to manually analyse the predictions against the expected outputs to infer any information that would suggest why the predictions do not align with the correct output. There are about 267 samples that were wrongly predicted.
 Manual analysis involved marking the questions with relevant information that we inferred from just looking at the questions and options. We also did POS tagging for identifying possible patterns with location based questions. We made use of NER, nltk and geotext to gather the proper nouns for our inferences.
-
+https://docs.google.com/spreadsheets/d/14U5gmqY6iRyP0faPunx0vxphVJW2ycZp7cVCjW-VVAM/edit?usp=sharing
 
 ## Phase 2 Experiments
 
