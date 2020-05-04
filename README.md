@@ -57,3 +57,31 @@ If you want to simply evaluate the model, download the [checkpoint file](https:/
 ### Error Analysis
 The objective of this task was to manually analyse the predictions against the expected outputs to infer any information that would suggest why the predictions do not align with the correct output. There are about 267 samples that were wrongly predicted.
 Manual analysis involved marking the questions with relevant information that we inferred from just looking at the questions and options. We also did POS tagging for identifying possible patterns with location based questions. We made use of NER, nltk and geotext to gather the proper nouns for our inferences.
+
+
+## Phase 2 Experiments
+
+For phase 2, we tried to add external knowledge bases and extract facts for each quetion + answer option combination to train a model with extra knowledge.
+
+We used scripts from [McQueen](https://github.com/ari9dam/McQueen) to ingest KB, IR from them, rerank facts using sentence similarity and finally construct the dataset in the format required by McQueen's MCQ solvers.
+
+Following 3 experiments were tried:
+
+1. **McQueen Roberta Concat Solver**  
+  **Accuracy: ~20%**  
+  Initially, the script was crashing due to CUDA going out of memory. Reduced `max_seq_length` to make it run (though in hindsight, probably should have modified `train_batch_size`). See the [`CSQA_Roberta.ipynb`](CSQA_Roberta.ipynb) for the script params and [`logs/mcqueen-robertalg_concat_2e6_009.log`](logs/mcqueen-robertalg_concat_2e6_009.log) for the training log.  
+  One of the reasons for this poor performance can be that some of the parameters were probably modified wrongly. Also, it was noticed that in the McQueen [`hf_roberta_mcq_concat_reader.py`](https://github.com/ari9dam/McQueen/blob/master/pytorch_transformers/models/hf_roberta_mcq_concat_reader.py) code, question was concatenated with choices to create new choices and question set to None ([1](https://github.com/ari9dam/McQueen/blob/master/pytorch_transformers/models/hf_roberta_mcq_concat_reader.py#L162)), premises were concatenated to act as questions ([2](https://github.com/ari9dam/McQueen/blob/master/pytorch_transformers/models/hf_roberta_mcq_concat_reader.py#L101)) and then finally input is constructed as question (which is now premises) + choices (which is question + choices) ([3](https://github.com/ari9dam/McQueen/blob/master/pytorch_transformers/models/hf_roberta_mcq_concat_reader.py#L65)). This meant that knowledge was added before question and options. Due to concatenation of all 10 premises, it is probable that all the 512 tokens in input were of premises only without the question and choices. Due to lack of time, did not try to experiment with modifying this code.
+
+2. **Fairseq Roberta Concat with KBs ARC, Webchild, OpenbookQA, and Atomic**  
+  **Accuracy: 76.49%**  
+  See [`CommonsenseQA/finetune-arc-web-open-atomic.sh`](CommonsenseQA/finetune-arc-web-open-atomic.sh) for the finetuning script and  [`logs/finetune-arc-web-open-atomic.log`](logs/finetune-arc-web-open-atomic.log) for training log.  
+  Used ARC (14M sentences), Webchild (148k nouns) and Openbook (1300 sentences) as general knowledge bases and Atomic (22k sentences) for If-then type of questions. Modified the fairseq task from baseline ([commonsense_qa_with_kb_task.py](CommonsenseQA/fairseq/examples/roberta/commonsense_qa_with_kb_task/commonsense_qa_with_kb_task.py)) to adapt to the McQueen dataset format. Inputs were created as question + choices + premises truncated to 512 tokens.  
+  Accuracy reduced ~2% from the baseline model probably because we used general knowledgebases and didn't use ones which were specific or more relevant to the provided dataset.
+
+3. **Fairseq Roberta Concat with KBs ARC, Webchild, and ConceptNet**  
+  **Accuracy: 76.57%**  
+  See [`CommonsenseQA/finetune-web-arc-cn.sh`](CommonsenseQA/finetune-web-arc-cn.sh) for the finetuning script and  [`logs/finetune-web-arc-cn.log`](logs/finetune-web-arc-cn.log) for training log.  
+  As an experiment, we added ConceptNet as a relevant KB to check if the accuracy improves. There was a very minor improvement though we are not sure if it can be credited to ConceptNet.
+
+
+ Finally, we can conclude that we need more relevant external knowledge bases and we need to improve our IR and reranking to provide the model with more specific facts.
