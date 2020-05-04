@@ -1,0 +1,1840 @@
+Namespace(activation_dropout=0.0, activation_fn='gelu', adam_betas='(0.9, 0.98)', adam_eps=1e-06, arch='roberta_large', attention_dropout=0.1, best_checkpoint_metric='accuracy', bpe='gpt2', bucket_cap_mb=25, clip_norm=0.0, cpu=False, criterion='sentence_ranking', curriculum=0, data='/home/jupyter/CommonsenseQA/data/CommonsenseQA/arc-web-open-atomic', dataset_impl=None, ddp_backend='no_c10d', device_id=0, disable_validation=False, distributed_backend='nccl', distributed_init_method=None, distributed_no_spawn=False, distributed_port=-1, distributed_rank=0, distributed_world_size=1, dropout=0.1, empty_cache_freq=0, encoder_attention_heads=16, encoder_embed_dim=1024, encoder_ffn_embed_dim=4096, encoder_layerdrop=0, encoder_layers=24, encoder_layers_to_keep=None, end_learning_rate=0.0, fast_stat_sync=False, find_unused_parameters=False, fix_batches_to_gpus=False, fixed_validation_seed=None, force_anneal=None, fp16=True, fp16_init_scale=128, fp16_scale_tolerance=0.0, fp16_scale_window=None, gpt2_encoder_json='https://dl.fbaipublicfiles.com/fairseq/gpt2_bpe/encoder.json', gpt2_vocab_bpe='https://dl.fbaipublicfiles.com/fairseq/gpt2_bpe/vocab.bpe', init_token=0, keep_interval_updates=-1, keep_last_epochs=-1, log_format='simple', log_interval=25, lr=[1e-05], lr_scheduler='polynomial_decay', max_epoch=0, max_positions=512, max_sentences=2, max_sentences_valid=2, max_tokens=None, max_tokens_valid=None, max_update=3000, maximize_best_checkpoint_metric=True, memory_efficient_fp16=False, min_loss_scale=0.0001, min_lr=-1, no_epoch_checkpoints=True, no_last_checkpoints=True, no_progress_bar=False, no_save=False, no_save_optimizer_state=True, num_classes=5, num_workers=1, optimizer='adam', optimizer_overrides='{}', pooler_activation_fn='tanh', pooler_dropout=0.0, power=1.0, required_batch_size_multiple=8, reset_dataloader=True, reset_lr_scheduler=False, reset_meters=True, reset_optimizer=True, restore_file='/home/jupyter/roberta.large/model.pt', save_dir='./checkpoints', save_interval=1, save_interval_updates=0, save_predictions=None, seed=23, sentence_avg=False, skip_invalid_size_inputs_valid_test=False, task='commonsense_qa_with_kb', tensorboard_logdir='', threshold_loss_scale=None, tokenizer=None, total_num_update=3000, train_subset='train', update_freq=[4], use_bmuf=False, user_dir='/home/jupyter/CommonsenseQA/fairseq/examples/roberta/commonsense_qa_with_kb', valid_subset='valid', validate_interval=1, warmup_updates=150, weight_decay=0.01)
+| dictionary: 50265 types
+| Loaded valid with 1221 samples
+RobertaModel(
+  (decoder): RobertaEncoder(
+    (sentence_encoder): TransformerSentenceEncoder(
+      (embed_tokens): Embedding(50265, 1024, padding_idx=1)
+      (embed_positions): LearnedPositionalEmbedding(514, 1024, padding_idx=1)
+      (layers): ModuleList(
+        (0): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (1): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (2): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (3): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (4): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (5): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (6): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (7): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (8): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (9): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (10): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (11): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (12): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (13): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (14): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (15): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (16): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (17): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (18): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (19): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (20): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (21): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (22): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (23): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (emb_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+    )
+    (lm_head): RobertaLMHead(
+      (dense): Linear(in_features=1024, out_features=1024, bias=True)
+      (layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+    )
+  )
+  (classification_heads): ModuleDict(
+    (sentence_classification_head): RobertaClassificationHead(
+      (dense): Linear(in_features=1024, out_features=1024, bias=True)
+      (dropout): Dropout(p=0.0, inplace=False)
+      (out_proj): Linear(in_features=1024, out_features=1, bias=True)
+    )
+  )
+)
+| model roberta_large, criterion SentenceRankingCriterion
+| num. model params: 356461658 (num. trained: 356461658)
+| training on 1 GPUs
+| max tokens per GPU = None and max sentences per GPU = 2
+Overwriting classification_heads.sentence_classification_head.dense.weight
+Overwriting classification_heads.sentence_classification_head.dense.bias
+Overwriting classification_heads.sentence_classification_head.out_proj.weight
+Overwriting classification_heads.sentence_classification_head.out_proj.bias
+| loaded checkpoint /home/jupyter/roberta.large/model.pt (epoch 0 @ 0 updates)
+| loading train data for epoch 0
+| Loaded train with 9741 samples
+| epoch 001:     25 / 1218 loss=2.319, nll_loss=0.015, ppl=1.01, wps=489, ups=0, wpb=1219.769, bsz=8.000, num_updates=26, lr=1.73333e-06, gnorm=24.091, clip=0.000, oom=0.000, loss_scale=128.000, wall=144, train_wall=66, accuracy=0.211538
+| epoch 001:     50 / 1218 loss=2.321, nll_loss=0.016, ppl=1.01, wps=483, ups=0, wpb=1170.333, bsz=8.000, num_updates=51, lr=3.4e-06, gnorm=16.229, clip=0.000, oom=0.000, loss_scale=128.000, wall=203, train_wall=124, accuracy=0.186275
+| epoch 001:     75 / 1218 loss=2.324, nll_loss=0.016, ppl=1.01, wps=481, ups=0, wpb=1156.487, bsz=8.000, num_updates=76, lr=5.06667e-06, gnorm=12.625, clip=0.000, oom=0.000, loss_scale=128.000, wall=262, train_wall=183, accuracy=0.171053
+| epoch 001:    100 / 1218 loss=2.327, nll_loss=0.016, ppl=1.01, wps=483, ups=0, wpb=1157.238, bsz=8.000, num_updates=101, lr=6.73333e-06, gnorm=10.830, clip=0.000, oom=0.000, loss_scale=128.000, wall=322, train_wall=242, accuracy=0.179455
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 2.00 MiB (GPU 0; 14.73 GiB total capacity; 13.91 GiB already allocated; 3.88 MiB free; 13.96 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 1            |        cudaMalloc retries: 2         |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14244 MB |   14248 MB |    6812 GB |    6798 GB |
+|       from large pool |   13901 MB |   13911 MB |    5565 GB |    5552 GB |
+|       from small pool |     342 MB |     946 MB |    1246 GB |    1246 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14244 MB |   14248 MB |    6812 GB |    6798 GB |
+|       from large pool |   13901 MB |   13911 MB |    5565 GB |    5552 GB |
+|       from small pool |     342 MB |     946 MB |    1246 GB |    1246 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14296 MB |   14296 MB |   15068 MB |     772 MB |
+|       from large pool |   13938 MB |   13938 MB |   13938 MB |       0 MB |
+|       from small pool |     358 MB |    1106 MB |    1130 MB |     772 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |   53181 KB |    2224 MB |    6925 GB |    6925 GB |
+|       from large pool |   37384 KB |    2181 MB |    5503 GB |    5503 GB |
+|       from small pool |   15797 KB |     216 MB |    1422 GB |    1422 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2801    |    3271    |    5720 K  |    5717 K  |
+|       from large pool |    1372    |    1855    |    1530 K  |    1529 K  |
+|       from small pool |    1429    |    2731    |    4189 K  |    4188 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2801    |    3271    |    5720 K  |    5717 K  |
+|       from large pool |    1372    |    1855    |    1530 K  |    1529 K  |
+|       from small pool |    1429    |    2731    |    4189 K  |    4188 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     543    |     873    |     929    |     386    |
+|       from large pool |     364    |     364    |     364    |       0    |
+|       from small pool |     179    |     553    |     565    |     386    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     161    |     637    |    3342 K  |    3342 K  |
+|       from large pool |      15    |     158    |    1137 K  |    1137 K  |
+|       from small pool |     146    |     561    |    2205 K  |    2205 K  |
+|===========================================================================|
+
+| epoch 001:    125 / 1218 loss=2.326, nll_loss=0.016, ppl=1.01, wps=480, ups=0, wpb=1152.000, bsz=7.984, num_updates=126, lr=8.4e-06, gnorm=9.469, clip=0.000, oom=0.008, loss_scale=128.000, wall=382, train_wall=301, accuracy=0.183897
+| epoch 001:    150 / 1218 loss=2.325, nll_loss=0.016, ppl=1.01, wps=483, ups=0, wpb=1168.417, bsz=7.987, num_updates=151, lr=9.99649e-06, gnorm=8.411, clip=0.000, oom=0.007, loss_scale=128.000, wall=445, train_wall=364, accuracy=0.185738
+| epoch 001:    175 / 1218 loss=2.324, nll_loss=0.016, ppl=1.01, wps=482, ups=0, wpb=1165.006, bsz=7.989, num_updates=176, lr=9.90877e-06, gnorm=8.872, clip=0.000, oom=0.006, loss_scale=128.000, wall=505, train_wall=423, accuracy=0.190612
+| epoch 001:    200 / 1218 loss=2.321, nll_loss=0.016, ppl=1.01, wps=482, ups=0, wpb=1161.905, bsz=7.990, num_updates=201, lr=9.82105e-06, gnorm=9.263, clip=0.000, oom=0.005, loss_scale=128.000, wall=564, train_wall=482, accuracy=0.199875
+| epoch 001:    225 / 1218 loss=2.297, nll_loss=0.016, ppl=1.01, wps=482, ups=0, wpb=1162.323, bsz=7.991, num_updates=226, lr=9.73333e-06, gnorm=14.091, clip=0.000, oom=0.004, loss_scale=128.000, wall=624, train_wall=542, accuracy=0.218715
+| epoch 001:    250 / 1218 loss=2.272, nll_loss=0.016, ppl=1.01, wps=482, ups=0, wpb=1158.036, bsz=7.992, num_updates=251, lr=9.64561e-06, gnorm=18.183, clip=0.000, oom=0.004, loss_scale=128.000, wall=683, train_wall=599, accuracy=0.236291
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 14.73 GiB total capacity; 13.80 GiB already allocated; 7.88 MiB free; 13.96 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 2            |        cudaMalloc retries: 9         |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14115 MB |   14248 MB |   15898 GB |   15884 GB |
+|       from large pool |   13950 MB |   13962 MB |   12996 GB |   12982 GB |
+|       from small pool |     164 MB |    1028 MB |    2901 GB |    2901 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14115 MB |   14248 MB |   15898 GB |   15884 GB |
+|       from large pool |   13950 MB |   13962 MB |   12996 GB |   12982 GB |
+|       from small pool |     164 MB |    1028 MB |    2901 GB |    2901 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14292 MB |   14296 MB |   37754 MB |   23462 MB |
+|       from large pool |   14098 MB |   14098 MB |   34546 MB |   20448 MB |
+|       from small pool |     194 MB |    1108 MB |    3208 MB |    3014 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  168648 KB |    2951 MB |   16195 GB |   16195 GB |
+|       from large pool |  138638 KB |    2900 MB |   12884 GB |   12884 GB |
+|       from small pool |   30009 KB |     235 MB |    3311 GB |    3311 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2733    |    3271    |   13329 K  |   13326 K  |
+|       from large pool |    1636    |    2002    |    3579 K  |    3577 K  |
+|       from small pool |    1097    |    2731    |    9750 K  |    9748 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2733    |    3271    |   13329 K  |   13326 K  |
+|       from large pool |    1636    |    2002    |    3579 K  |    3577 K  |
+|       from small pool |    1097    |    2731    |    9750 K  |    9748 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     493    |     890    |    2803    |    2310    |
+|       from large pool |     396    |     399    |    1199    |     803    |
+|       from small pool |      97    |     554    |    1604    |    1507    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     203    |     644    |    7797 K  |    7797 K  |
+|       from large pool |     103    |     180    |    2655 K  |    2655 K  |
+|       from small pool |     100    |     566    |    5141 K  |    5141 K  |
+|===========================================================================|
+
+| epoch 001:    275 / 1218 loss=2.237, nll_loss=0.015, ppl=1.01, wps=481, ups=0, wpb=1157.409, bsz=7.986, num_updates=276, lr=9.55789e-06, gnorm=20.993, clip=0.000, oom=0.007, loss_scale=128.000, wall=743, train_wall=659, accuracy=0.252722
+| epoch 001:    300 / 1218 loss=2.212, nll_loss=0.015, ppl=1.01, wps=482, ups=0, wpb=1159.243, bsz=7.987, num_updates=301, lr=9.47018e-06, gnorm=23.618, clip=0.000, oom=0.007, loss_scale=128.000, wall=803, train_wall=718, accuracy=0.267887
+| epoch 001:    325 / 1218 loss=2.178, nll_loss=0.015, ppl=1.01, wps=482, ups=0, wpb=1160.917, bsz=7.988, num_updates=326, lr=9.38246e-06, gnorm=25.321, clip=0.000, oom=0.006, loss_scale=128.000, wall=864, train_wall=779, accuracy=0.288018
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 14.73 GiB total capacity; 13.84 GiB already allocated; 15.88 MiB free; 13.95 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 3            |        cudaMalloc retries: 12        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14154 MB |   14248 MB |   19852 GB |   19838 GB |
+|       from large pool |   13988 MB |   14010 MB |   16233 GB |   16220 GB |
+|       from small pool |     165 MB |    1028 MB |    3618 GB |    3618 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14154 MB |   14248 MB |   19852 GB |   19838 GB |
+|       from large pool |   13988 MB |   14010 MB |   16233 GB |   16220 GB |
+|       from small pool |     165 MB |    1028 MB |    3618 GB |    3618 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14284 MB |   14296 MB |   46342 MB |   32058 MB |
+|       from large pool |   14088 MB |   14098 MB |   42190 MB |   28102 MB |
+|       from small pool |     196 MB |    1108 MB |    4152 MB |    3956 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  120809 KB |    2951 MB |   20168 GB |   20168 GB |
+|       from large pool |   89328 KB |    2900 MB |   16041 GB |   16041 GB |
+|       from small pool |   31481 KB |     235 MB |    4126 GB |    4126 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2761    |    3271    |   16585 K  |   16582 K  |
+|       from large pool |    1656    |    2002    |    4460 K  |    4459 K  |
+|       from small pool |    1105    |    2731    |   12124 K  |   12123 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2761    |    3271    |   16585 K  |   16582 K  |
+|       from large pool |    1656    |    2002    |    4460 K  |    4459 K  |
+|       from small pool |    1105    |    2731    |   12124 K  |   12123 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     496    |     898    |    3612    |    3116    |
+|       from large pool |     398    |     399    |    1536    |    1138    |
+|       from small pool |      98    |     554    |    2076    |    1978    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     134    |     647    |    9717 K  |    9717 K  |
+|       from large pool |      61    |     183    |    3319 K  |    3319 K  |
+|       from small pool |      73    |     566    |    6397 K  |    6397 K  |
+|===========================================================================|
+
+| epoch 001:    350 / 1218 loss=2.151, nll_loss=0.015, ppl=1.01, wps=482, ups=0, wpb=1159.994, bsz=7.983, num_updates=351, lr=9.29474e-06, gnorm=27.593, clip=0.000, oom=0.009, loss_scale=128.000, wall=925, train_wall=839, accuracy=0.304069
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 14.73 GiB total capacity; 13.74 GiB already allocated; 21.88 MiB free; 13.94 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 4            |        cudaMalloc retries: 15        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14067 MB |   14248 MB |   21808 GB |   21794 GB |
+|       from large pool |   13830 MB |   14010 MB |   17828 GB |   17815 GB |
+|       from small pool |     236 MB |    1028 MB |    3979 GB |    3979 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14067 MB |   14248 MB |   21808 GB |   21794 GB |
+|       from large pool |   13830 MB |   14010 MB |   17828 GB |   17815 GB |
+|       from small pool |     236 MB |    1028 MB |    3979 GB |    3979 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14278 MB |   14296 MB |   54798 MB |   40520 MB |
+|       from large pool |   14000 MB |   14098 MB |   49686 MB |   35686 MB |
+|       from small pool |     278 MB |    1108 MB |    5112 MB |    4834 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  215825 KB |    2951 MB |   22216 GB |   22216 GB |
+|       from large pool |  173394 KB |    2900 MB |   17677 GB |   17677 GB |
+|       from small pool |   42431 KB |     235 MB |    4538 GB |    4538 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    3034    |    3271    |   18227 K  |   18224 K  |
+|       from large pool |    1724    |    2002    |    4900 K  |    4898 K  |
+|       from small pool |    1310    |    2731    |   13326 K  |   13325 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    3034    |    3271    |   18227 K  |   18224 K  |
+|       from large pool |    1724    |    2002    |    4900 K  |    4898 K  |
+|       from small pool |    1310    |    2731    |   13326 K  |   13325 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     531    |     898    |    4418    |    3887    |
+|       from large pool |     392    |     399    |    1862    |    1470    |
+|       from small pool |     139    |     554    |    2556    |    2417    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     275    |     647    |   10676 K  |   10675 K  |
+|       from large pool |     134    |     183    |    3642 K  |    3642 K  |
+|       from small pool |     141    |     566    |    7033 K  |    7033 K  |
+|===========================================================================|
+
+| WARNING: overflow detected, setting loss scale to: 64.0
+| epoch 001:    375 / 1218 loss=2.112, nll_loss=0.015, ppl=1.01, wps=480, ups=0, wpb=1158.272, bsz=7.979, num_updates=375, lr=9.21053e-06, gnorm=30.530, clip=0.000, oom=0.011, loss_scale=64.000, wall=985, train_wall=899, accuracy=0.322527
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 16.00 MiB (GPU 0; 14.73 GiB total capacity; 13.70 GiB already allocated; 15.88 MiB free; 13.95 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 5            |        cudaMalloc retries: 18        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14027 MB |   14248 MB |   23648 GB |   23634 GB |
+|       from large pool |   13696 MB |   14010 MB |   19330 GB |   19317 GB |
+|       from small pool |     331 MB |    1028 MB |    4317 GB |    4317 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14027 MB |   14248 MB |   23648 GB |   23634 GB |
+|       from large pool |   13696 MB |   14010 MB |   19330 GB |   19317 GB |
+|       from small pool |     331 MB |    1028 MB |    4317 GB |    4317 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14284 MB |   14296 MB |   62728 MB |   48444 MB |
+|       from large pool |   13900 MB |   14098 MB |   56770 MB |   42870 MB |
+|       from small pool |     384 MB |    1108 MB |    5958 MB |    5574 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  262165 KB |    2951 MB |   24113 GB |   24112 GB |
+|       from large pool |  207998 KB |    2900 MB |   19187 GB |   19187 GB |
+|       from small pool |   54167 KB |     235 MB |    4925 GB |    4925 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2780    |    3271    |   19782 K  |   19779 K  |
+|       from large pool |    1597    |    2002    |    5313 K  |    5312 K  |
+|       from small pool |    1183    |    2731    |   14469 K  |   14467 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2780    |    3271    |   19782 K  |   19779 K  |
+|       from large pool |    1597    |    2002    |    5313 K  |    5312 K  |
+|       from small pool |    1183    |    2731    |   14469 K  |   14467 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     568    |     898    |    5125    |    4557    |
+|       from large pool |     376    |     399    |    2146    |    1770    |
+|       from small pool |     192    |     554    |    2979    |    2787    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     314    |     647    |   11580 K  |   11580 K  |
+|       from large pool |     129    |     183    |    3945 K  |    3945 K  |
+|       from small pool |     185    |     566    |    7635 K  |    7634 K  |
+|===========================================================================|
+
+| epoch 001:    400 / 1218 loss=2.076, nll_loss=0.014, ppl=1.01, wps=479, ups=0, wpb=1156.150, bsz=7.975, num_updates=400, lr=9.12281e-06, gnorm=32.731, clip=0.000, oom=0.012, loss_scale=64.000, wall=1045, train_wall=958, accuracy=0.339498
+| epoch 001:    425 / 1218 loss=2.038, nll_loss=0.014, ppl=1.01, wps=479, ups=0, wpb=1154.711, bsz=7.976, num_updates=425, lr=9.03509e-06, gnorm=36.297, clip=0.000, oom=0.012, loss_scale=64.000, wall=1105, train_wall=1017, accuracy=0.356637
+| epoch 001:    450 / 1218 loss=2.012, nll_loss=0.014, ppl=1.01, wps=479, ups=0, wpb=1154.713, bsz=7.978, num_updates=450, lr=8.94737e-06, gnorm=38.160, clip=0.000, oom=0.011, loss_scale=64.000, wall=1164, train_wall=1076, accuracy=0.367967
+| epoch 001:    475 / 1218 loss=1.993, nll_loss=0.014, ppl=1.01, wps=479, ups=0, wpb=1153.838, bsz=7.979, num_updates=475, lr=8.85965e-06, gnorm=39.542, clip=0.000, oom=0.011, loss_scale=64.000, wall=1224, train_wall=1135, accuracy=0.375198
+| epoch 001:    500 / 1218 loss=1.969, nll_loss=0.014, ppl=1.01, wps=478, ups=0, wpb=1152.554, bsz=7.980, num_updates=500, lr=8.77193e-06, gnorm=40.984, clip=0.000, oom=0.010, loss_scale=64.000, wall=1284, train_wall=1194, accuracy=0.386466
+| epoch 001:    525 / 1218 loss=1.948, nll_loss=0.013, ppl=1.01, wps=479, ups=0, wpb=1151.573, bsz=7.981, num_updates=525, lr=8.68421e-06, gnorm=41.907, clip=0.000, oom=0.010, loss_scale=64.000, wall=1343, train_wall=1253, accuracy=0.397136
+| epoch 001:    550 / 1218 loss=1.924, nll_loss=0.013, ppl=1.01, wps=479, ups=0, wpb=1152.238, bsz=7.982, num_updates=550, lr=8.59649e-06, gnorm=42.593, clip=0.000, oom=0.009, loss_scale=64.000, wall=1403, train_wall=1313, accuracy=0.405695
+| epoch 001:    575 / 1218 loss=1.906, nll_loss=0.013, ppl=1.01, wps=479, ups=0, wpb=1153.047, bsz=7.983, num_updates=575, lr=8.50877e-06, gnorm=43.796, clip=0.000, oom=0.009, loss_scale=64.000, wall=1464, train_wall=1373, accuracy=0.412636
+| epoch 001:    600 / 1218 loss=1.881, nll_loss=0.013, ppl=1.01, wps=479, ups=0, wpb=1153.233, bsz=7.983, num_updates=600, lr=8.42105e-06, gnorm=44.378, clip=0.000, oom=0.008, loss_scale=64.000, wall=1525, train_wall=1433, accuracy=0.421086
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 14.73 GiB total capacity; 13.84 GiB already allocated; 21.88 MiB free; 13.94 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 6            |        cudaMalloc retries: 24        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14148 MB |   14248 MB |   36083 GB |   36069 GB |
+|       from large pool |   13976 MB |   14010 MB |   29499 GB |   29485 GB |
+|       from small pool |     171 MB |    1028 MB |    6584 GB |    6583 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14148 MB |   14248 MB |   36083 GB |   36069 GB |
+|       from large pool |   13976 MB |   14010 MB |   29499 GB |   29485 GB |
+|       from small pool |     171 MB |    1028 MB |    6584 GB |    6583 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14278 MB |   14296 MB |   78210 MB |   63932 MB |
+|       from large pool |   14062 MB |   14098 MB |   69414 MB |   55352 MB |
+|       from small pool |     216 MB |    1108 MB |    8796 MB |    8580 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  107763 KB |    4138 MB |   37057 GB |   37057 GB |
+|       from large pool |   62669 KB |    4091 MB |   29549 GB |   29549 GB |
+|       from small pool |   45093 KB |     245 MB |    7508 GB |    7507 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2953    |    3271    |   30219 K  |   30216 K  |
+|       from large pool |    1786    |    2002    |    8120 K  |    8118 K  |
+|       from small pool |    1167    |    2731    |   22098 K  |   22097 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2953    |    3271    |   30219 K  |   30216 K  |
+|       from large pool |    1786    |    2002    |    8120 K  |    8118 K  |
+|       from small pool |    1167    |    2731    |   22098 K  |   22097 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     340    |     898    |    6925    |    6585    |
+|       from large pool |     232    |     399    |    2527    |    2295    |
+|       from small pool |     108    |     554    |    4398    |    4290    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     160    |     647    |   17644 K  |   17644 K  |
+|       from large pool |      44    |     183    |    5980 K  |    5980 K  |
+|       from small pool |     116    |     568    |   11663 K  |   11663 K  |
+|===========================================================================|
+
+| epoch 001:    625 / 1218 loss=1.863, nll_loss=0.013, ppl=1.01, wps=479, ups=0, wpb=1152.938, bsz=7.981, num_updates=625, lr=8.33333e-06, gnorm=44.769, clip=0.000, oom=0.010, loss_scale=64.000, wall=1585, train_wall=1492, accuracy=0.426824
+| epoch 001:    650 / 1218 loss=1.843, nll_loss=0.013, ppl=1.01, wps=479, ups=0, wpb=1152.249, bsz=7.982, num_updates=650, lr=8.24561e-06, gnorm=45.198, clip=0.000, oom=0.009, loss_scale=64.000, wall=1644, train_wall=1551, accuracy=0.435428
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 14.73 GiB total capacity; 13.67 GiB already allocated; 15.88 MiB free; 13.95 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 7            |        cudaMalloc retries: 27        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   13974 MB |   14248 MB |   39343 GB |   39330 GB |
+|       from large pool |   13803 MB |   14010 MB |   32160 GB |   32146 GB |
+|       from small pool |     171 MB |    1028 MB |    7183 GB |    7183 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   13974 MB |   14248 MB |   39343 GB |   39330 GB |
+|       from large pool |   13803 MB |   14010 MB |   32160 GB |   32146 GB |
+|       from small pool |     171 MB |    1028 MB |    7183 GB |    7183 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14284 MB |   14296 MB |   86514 MB |   72230 MB |
+|       from large pool |   14060 MB |   14098 MB |   76850 MB |   62790 MB |
+|       from small pool |     224 MB |    1108 MB |    9664 MB |    9440 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  288646 KB |    4138 MB |   40420 GB |   40420 GB |
+|       from large pool |  234436 KB |    4091 MB |   32228 GB |   32228 GB |
+|       from small pool |   54210 KB |     245 MB |    8191 GB |    8191 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    3033    |    3271    |   32962 K  |   32959 K  |
+|       from large pool |    1842    |    2002    |    8850 K  |    8849 K  |
+|       from small pool |    1191    |    2731    |   24111 K  |   24110 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    3033    |    3271    |   32962 K  |   32959 K  |
+|       from large pool |    1842    |    2002    |    8850 K  |    8849 K  |
+|       from small pool |    1191    |    2731    |   24111 K  |   24110 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     474    |     898    |    7645    |    7171    |
+|       from large pool |     362    |     399    |    2813    |    2451    |
+|       from small pool |     112    |     554    |    4832    |    4720    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     286    |     647    |   19240 K  |   19240 K  |
+|       from large pool |     173    |     183    |    6514 K  |    6514 K  |
+|       from small pool |     113    |     568    |   12725 K  |   12725 K  |
+|===========================================================================|
+
+| epoch 001:    675 / 1218 loss=1.824, nll_loss=0.013, ppl=1.01, wps=478, ups=0, wpb=1151.061, bsz=7.979, num_updates=675, lr=8.15789e-06, gnorm=45.341, clip=0.000, oom=0.010, loss_scale=64.000, wall=1704, train_wall=1610, accuracy=0.440772
+| epoch 001:    700 / 1218 loss=1.809, nll_loss=0.013, ppl=1.01, wps=478, ups=0, wpb=1151.273, bsz=7.980, num_updates=700, lr=8.07018e-06, gnorm=45.746, clip=0.000, oom=0.010, loss_scale=64.000, wall=1764, train_wall=1670, accuracy=0.447726
+| epoch 001:    725 / 1218 loss=1.793, nll_loss=0.012, ppl=1.01, wps=478, ups=0, wpb=1150.866, bsz=7.981, num_updates=725, lr=7.98246e-06, gnorm=46.742, clip=0.000, oom=0.010, loss_scale=64.000, wall=1823, train_wall=1729, accuracy=0.454373
+| epoch 001:    750 / 1218 loss=1.779, nll_loss=0.012, ppl=1.01, wps=479, ups=0, wpb=1152.347, bsz=7.981, num_updates=750, lr=7.89474e-06, gnorm=46.861, clip=0.000, oom=0.009, loss_scale=64.000, wall=1884, train_wall=1789, accuracy=0.459572
+| epoch 001:    775 / 1218 loss=1.772, nll_loss=0.012, ppl=1.01, wps=479, ups=0, wpb=1152.250, bsz=7.982, num_updates=775, lr=7.80702e-06, gnorm=47.091, clip=0.000, oom=0.009, loss_scale=64.000, wall=1944, train_wall=1848, accuracy=0.462819
+| epoch 001:    800 / 1218 loss=1.759, nll_loss=0.012, ppl=1.01, wps=479, ups=0, wpb=1151.080, bsz=7.982, num_updates=800, lr=7.7193e-06, gnorm=47.137, clip=0.000, oom=0.009, loss_scale=64.000, wall=2003, train_wall=1906, accuracy=0.468681
+| epoch 001:    825 / 1218 loss=1.748, nll_loss=0.012, ppl=1.01, wps=478, ups=0, wpb=1150.479, bsz=7.983, num_updates=825, lr=7.63158e-06, gnorm=47.439, clip=0.000, oom=0.008, loss_scale=64.000, wall=2064, train_wall=1966, accuracy=0.472669
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 16.00 MiB (GPU 0; 14.73 GiB total capacity; 13.59 GiB already allocated; 3.88 MiB free; 13.96 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 8            |        cudaMalloc retries: 32        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   13918 MB |   14248 MB |   49232 GB |   49218 GB |
+|       from large pool |   13581 MB |   14010 MB |   40222 GB |   40209 GB |
+|       from small pool |     336 MB |    1028 MB |    9009 GB |    9009 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   13918 MB |   14248 MB |   49232 GB |   49218 GB |
+|       from large pool |   13581 MB |   14010 MB |   40222 GB |   40209 GB |
+|       from small pool |     336 MB |    1028 MB |    9009 GB |    9009 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14296 MB |   14296 MB |  100348 MB |   86052 MB |
+|       from large pool |   13928 MB |   14098 MB |   88866 MB |   74938 MB |
+|       from small pool |     368 MB |    1108 MB |   11482 MB |   11114 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  387055 KB |    4138 MB |   50601 GB |   50601 GB |
+|       from large pool |  354684 KB |    4091 MB |   40329 GB |   40329 GB |
+|       from small pool |   32371 KB |     245 MB |   10271 GB |   10271 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2762    |    3271    |   41284 K  |   41282 K  |
+|       from large pool |    1461    |    2002    |   11072 K  |   11071 K  |
+|       from small pool |    1301    |    2731    |   30212 K  |   30210 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2762    |    3271    |   41284 K  |   41282 K  |
+|       from large pool |    1461    |    2002    |   11072 K  |   11071 K  |
+|       from small pool |    1301    |    2731    |   30212 K  |   30210 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     549    |     898    |    8899    |    8350    |
+|       from large pool |     365    |     399    |    3158    |    2793    |
+|       from small pool |     184    |     554    |    5741    |    5557    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     443    |     660    |   24098 K  |   24098 K  |
+|       from large pool |     257    |     257    |    8142 K  |    8142 K  |
+|       from small pool |     186    |     568    |   15956 K  |   15956 K  |
+|===========================================================================|
+
+| epoch 001:    850 / 1218 loss=1.731, nll_loss=0.012, ppl=1.01, wps=479, ups=0, wpb=1150.671, bsz=7.981, num_updates=850, lr=7.54386e-06, gnorm=47.600, clip=0.000, oom=0.009, loss_scale=64.000, wall=2123, train_wall=2025, accuracy=0.478774
+| epoch 001:    875 / 1218 loss=1.717, nll_loss=0.012, ppl=1.01, wps=479, ups=0, wpb=1150.870, bsz=7.982, num_updates=875, lr=7.45614e-06, gnorm=47.829, clip=0.000, oom=0.009, loss_scale=64.000, wall=2184, train_wall=2085, accuracy=0.48425
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 14.73 GiB total capacity; 13.80 GiB already allocated; 13.88 MiB free; 13.95 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 9            |        cudaMalloc retries: 35        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14132 MB |   14248 MB |   52412 GB |   52398 GB |
+|       from large pool |   13965 MB |   14010 MB |   42824 GB |   42811 GB |
+|       from small pool |     166 MB |    1028 MB |    9587 GB |    9587 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14132 MB |   14248 MB |   52412 GB |   52398 GB |
+|       from large pool |   13965 MB |   14010 MB |   42824 GB |   42811 GB |
+|       from small pool |     166 MB |    1028 MB |    9587 GB |    9587 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14286 MB |   14296 MB |  108282 MB |   93996 MB |
+|       from large pool |   14088 MB |   14098 MB |   96038 MB |   81950 MB |
+|       from small pool |     198 MB |    1108 MB |   12244 MB |   12046 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  157323 KB |    4138 MB |   53976 GB |   53975 GB |
+|       from large pool |  125354 KB |    4091 MB |   43047 GB |   43047 GB |
+|       from small pool |   31969 KB |     245 MB |   10928 GB |   10928 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2785    |    3271    |   43927 K  |   43925 K  |
+|       from large pool |    1668    |    2002    |   11791 K  |   11789 K  |
+|       from small pool |    1117    |    2731    |   32136 K  |   32135 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2785    |    3271    |   43927 K  |   43925 K  |
+|       from large pool |    1668    |    2002    |   11791 K  |   11789 K  |
+|       from small pool |    1117    |    2731    |   32136 K  |   32135 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     422    |     898    |    9510    |    9088    |
+|       from large pool |     323    |     399    |    3388    |    3065    |
+|       from small pool |      99    |     554    |    6122    |    6023    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     176    |     660    |   25639 K  |   25639 K  |
+|       from large pool |      96    |     264    |    8669 K  |    8669 K  |
+|       from small pool |      80    |     568    |   16969 K  |   16969 K  |
+|===========================================================================|
+
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 16.00 MiB (GPU 0; 14.73 GiB total capacity; 13.74 GiB already allocated; 11.88 MiB free; 13.95 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 10           |        cudaMalloc retries: 38        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14068 MB |   14248 MB |   53005 GB |   52991 GB |
+|       from large pool |   13896 MB |   14010 MB |   43308 GB |   43294 GB |
+|       from small pool |     171 MB |    1028 MB |    9697 GB |    9696 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14068 MB |   14248 MB |   53005 GB |   52991 GB |
+|       from large pool |   13896 MB |   14010 MB |   43308 GB |   43294 GB |
+|       from small pool |     171 MB |    1028 MB |    9697 GB |    9696 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14288 MB |   14296 MB |  116840 MB |  102552 MB |
+|       from large pool |   14066 MB |   14098 MB |  103768 MB |   89702 MB |
+|       from small pool |     222 MB |    1108 MB |   13072 MB |   12850 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  224904 KB |    4138 MB |   54604 GB |   54604 GB |
+|       from large pool |  173552 KB |    4091 MB |   43550 GB |   43550 GB |
+|       from small pool |   51351 KB |     245 MB |   11054 GB |   11054 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    3014    |    3271    |   44431 K  |   44428 K  |
+|       from large pool |    1829    |    2002    |   11925 K  |   11923 K  |
+|       from small pool |    1185    |    2731    |   32506 K  |   32505 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    3014    |    3271    |   44431 K  |   44428 K  |
+|       from large pool |    1829    |    2002    |   11925 K  |   11923 K  |
+|       from small pool |    1185    |    2731    |   32506 K  |   32505 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     416    |     898    |   10177    |    9761    |
+|       from large pool |     305    |     399    |    3641    |    3336    |
+|       from small pool |     111    |     554    |    6536    |    6425    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     240    |     660    |   25936 K  |   25936 K  |
+|       from large pool |     127    |     264    |    8767 K  |    8767 K  |
+|       from small pool |     113    |     568    |   17168 K  |   17168 K  |
+|===========================================================================|
+
+| epoch 001:    900 / 1218 loss=1.706, nll_loss=0.012, ppl=1.01, wps=479, ups=0, wpb=1150.309, bsz=7.978, num_updates=900, lr=7.36842e-06, gnorm=47.971, clip=0.000, oom=0.011, loss_scale=64.000, wall=2243, train_wall=2144, accuracy=0.488301
+| epoch 001:    925 / 1218 loss=1.700, nll_loss=0.012, ppl=1.01, wps=478, ups=0, wpb=1150.160, bsz=7.977, num_updates=925, lr=7.2807e-06, gnorm=48.166, clip=0.000, oom=0.011, loss_scale=64.000, wall=2303, train_wall=2204, accuracy=0.491123
+| epoch 001:    950 / 1218 loss=1.687, nll_loss=0.012, ppl=1.01, wps=479, ups=0, wpb=1150.819, bsz=7.978, num_updates=950, lr=7.19298e-06, gnorm=48.067, clip=0.000, oom=0.011, loss_scale=64.000, wall=2364, train_wall=2263, accuracy=0.497295
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 16.00 MiB (GPU 0; 14.73 GiB total capacity; 13.70 GiB already allocated; 5.88 MiB free; 13.96 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 11           |        cudaMalloc retries: 41        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14026 MB |   14248 MB |   56818 GB |   56804 GB |
+|       from large pool |   13670 MB |   14010 MB |   46422 GB |   46408 GB |
+|       from small pool |     355 MB |    1028 MB |   10396 GB |   10395 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14026 MB |   14248 MB |   56818 GB |   56804 GB |
+|       from large pool |   13670 MB |   14010 MB |   46422 GB |   46408 GB |
+|       from small pool |     355 MB |    1028 MB |   10396 GB |   10395 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14294 MB |   14296 MB |  125108 MB |  110814 MB |
+|       from large pool |   13920 MB |   14098 MB |  111136 MB |   97216 MB |
+|       from small pool |     374 MB |    1108 MB |   13972 MB |   13598 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  273912 KB |    4138 MB |   58637 GB |   58637 GB |
+|       from large pool |  255163 KB |    4091 MB |   46787 GB |   46787 GB |
+|       from small pool |   18749 KB |     245 MB |   11850 GB |   11850 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2692    |    3271    |   47611 K  |   47609 K  |
+|       from large pool |    1411    |    2002    |   12780 K  |   12779 K  |
+|       from small pool |    1281    |    2731    |   34831 K  |   34830 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2692    |    3271    |   47611 K  |   47609 K  |
+|       from large pool |    1411    |    2002    |   12780 K  |   12779 K  |
+|       from small pool |    1281    |    2731    |   34831 K  |   34830 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     546    |     898    |   10916    |   10370    |
+|       from large pool |     359    |     399    |    3930    |    3571    |
+|       from small pool |     187    |     554    |    6986    |    6799    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     270    |     660    |   27790 K  |   27790 K  |
+|       from large pool |     152    |     264    |    9388 K  |    9388 K  |
+|       from small pool |     118    |     568    |   18401 K  |   18401 K  |
+|===========================================================================|
+
+| epoch 001:    975 / 1218 loss=1.677, nll_loss=0.012, ppl=1.01, wps=478, ups=0, wpb=1150.670, bsz=7.976, num_updates=975, lr=7.10526e-06, gnorm=48.493, clip=0.000, oom=0.011, loss_scale=64.000, wall=2425, train_wall=2323, accuracy=0.500836
+| epoch 001:   1000 / 1218 loss=1.670, nll_loss=0.012, ppl=1.01, wps=478, ups=0, wpb=1150.710, bsz=7.977, num_updates=1000, lr=7.01754e-06, gnorm=48.460, clip=0.000, oom=0.011, loss_scale=64.000, wall=2484, train_wall=2383, accuracy=0.503197
+| epoch 001:   1025 / 1218 loss=1.663, nll_loss=0.012, ppl=1.01, wps=478, ups=0, wpb=1151.271, bsz=7.978, num_updates=1025, lr=6.92982e-06, gnorm=48.589, clip=0.000, oom=0.011, loss_scale=64.000, wall=2546, train_wall=2444, accuracy=0.506665
+| epoch 001:   1050 / 1218 loss=1.656, nll_loss=0.011, ppl=1.01, wps=478, ups=0, wpb=1151.145, bsz=7.978, num_updates=1050, lr=6.84211e-06, gnorm=48.639, clip=0.000, oom=0.010, loss_scale=64.000, wall=2606, train_wall=2504, accuracy=0.50949
+| epoch 001:   1075 / 1218 loss=1.649, nll_loss=0.011, ppl=1.01, wps=478, ups=0, wpb=1151.541, bsz=7.979, num_updates=1075, lr=6.75439e-06, gnorm=48.620, clip=0.000, oom=0.010, loss_scale=64.000, wall=2667, train_wall=2564, accuracy=0.511717
+| epoch 001:   1100 / 1218 loss=1.639, nll_loss=0.011, ppl=1.01, wps=479, ups=0, wpb=1152.775, bsz=7.979, num_updates=1100, lr=6.66667e-06, gnorm=49.006, clip=0.000, oom=0.010, loss_scale=64.000, wall=2727, train_wall=2623, accuracy=0.516008
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 14.00 MiB (GPU 0; 14.73 GiB total capacity; 13.88 GiB already allocated; 13.88 MiB free; 13.95 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 12           |        cudaMalloc retries: 46        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14209 MB |   14248 MB |   66990 GB |   66976 GB |
+|       from large pool |   13911 MB |   14010 MB |   54726 GB |   54713 GB |
+|       from small pool |     298 MB |    1069 MB |   12263 GB |   12262 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14209 MB |   14248 MB |   66990 GB |   66976 GB |
+|       from large pool |   13911 MB |   14010 MB |   54726 GB |   54713 GB |
+|       from small pool |     298 MB |    1069 MB |   12263 GB |   12262 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14286 MB |   14296 MB |  139552 MB |  125266 MB |
+|       from large pool |   13954 MB |   14098 MB |  122734 MB |  108780 MB |
+|       from small pool |     332 MB |    1108 MB |   16818 MB |   16486 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |   78360 KB |    4667 MB |   69816 GB |   69816 GB |
+|       from large pool |   43710 KB |    4650 MB |   55841 GB |   55841 GB |
+|       from small pool |   34649 KB |     245 MB |   13974 GB |   13974 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    3153    |    3271    |   56085 K  |   56082 K  |
+|       from large pool |    1706    |    2002    |   15052 K  |   15050 K  |
+|       from small pool |    1447    |    2731    |   41032 K  |   41031 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    3153    |    3271    |   56085 K  |   56082 K  |
+|       from large pool |    1706    |    2002    |   15052 K  |   15050 K  |
+|       from small pool |    1447    |    2731    |   41032 K  |   41031 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     336    |     898    |   12624    |   12288    |
+|       from large pool |     170    |     399    |    4215    |    4045    |
+|       from small pool |     166    |     554    |    8409    |    8243    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     165    |     686    |   32591 K  |   32591 K  |
+|       from large pool |      30    |     264    |   10910 K  |   10910 K  |
+|       from small pool |     135    |     568    |   21681 K  |   21681 K  |
+|===========================================================================|
+
+| epoch 001:   1125 / 1218 loss=1.634, nll_loss=0.011, ppl=1.01, wps=479, ups=0, wpb=1151.952, bsz=7.978, num_updates=1125, lr=6.57895e-06, gnorm=49.217, clip=0.000, oom=0.011, loss_scale=64.000, wall=2787, train_wall=2682, accuracy=0.518886
+| epoch 001:   1150 / 1218 loss=1.624, nll_loss=0.011, ppl=1.01, wps=479, ups=0, wpb=1151.623, bsz=7.978, num_updates=1150, lr=6.49123e-06, gnorm=50.102, clip=0.000, oom=0.010, loss_scale=64.000, wall=2846, train_wall=2741, accuracy=0.522616
+| epoch 001:   1175 / 1218 loss=1.619, nll_loss=0.011, ppl=1.01, wps=479, ups=0, wpb=1151.409, bsz=7.979, num_updates=1175, lr=6.40351e-06, gnorm=50.075, clip=0.000, oom=0.010, loss_scale=64.000, wall=2906, train_wall=2800, accuracy=0.524907
+| epoch 001:   1200 / 1218 loss=1.610, nll_loss=0.011, ppl=1.01, wps=479, ups=0, wpb=1151.972, bsz=7.979, num_updates=1200, lr=6.31579e-06, gnorm=50.045, clip=0.000, oom=0.010, loss_scale=64.000, wall=2965, train_wall=2858, accuracy=0.527937
+| epoch 001 | loss 1.602 | nll_loss 0.011 | ppl 1.01 | wps 479 | ups 0 | wpb 1151.559 | bsz 7.978 | num_updates 1217 | lr 6.25614e-06 | gnorm 49.992 | clip 0.000 | oom 0.010 | loss_scale 64.000 | wall 3005 | train_wall 2898 | accuracy 0.530745
+| WARNING: attempting to recover from OOM in forward/backward pass
+| epoch 001 | valid on 'valid' subset | loss 1.005 | nll_loss 0.007 | ppl 1 | num_updates 1217 | accuracy 0.735679
+| saved checkpoint ./checkpoints/checkpoint_best.pt (epoch 1 @ 1217 updates) (writing took 5.8472981452941895 seconds)
+| epoch 002:     25 / 1218 loss=1.013, nll_loss=0.007, ppl=1, wps=479, ups=0, wpb=1139.885, bsz=8.000, num_updates=1243, lr=6.16491e-06, gnorm=57.473, clip=0.000, oom=0.010, loss_scale=64.000, wall=3161, train_wall=2959, accuracy=0.754808
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 16.00 MiB (GPU 0; 14.73 GiB total capacity; 13.75 GiB already allocated; 13.88 MiB free; 13.95 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 13           |        cudaMalloc retries: 49        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14079 MB |   14248 MB |   76380 GB |   76366 GB |
+|       from large pool |   13907 MB |   14010 MB |   62201 GB |   62187 GB |
+|       from small pool |     171 MB |    1069 MB |   14179 GB |   14179 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14079 MB |   14248 MB |   76380 GB |   76366 GB |
+|       from large pool |   13907 MB |   14010 MB |   62201 GB |   62187 GB |
+|       from small pool |     171 MB |    1069 MB |   14179 GB |   14179 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14286 MB |   14296 MB |  147608 MB |  133322 MB |
+|       from large pool |   14064 MB |   14098 MB |  129996 MB |  115932 MB |
+|       from small pool |     222 MB |    1108 MB |   17612 MB |   17390 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  211906 KB |    6053 MB |   79385 GB |   79385 GB |
+|       from large pool |  160554 KB |    5950 MB |   63309 GB |   63309 GB |
+|       from small pool |   51351 KB |     245 MB |   16076 GB |   16076 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    3014    |    3271    |   64121 K  |   64118 K  |
+|       from large pool |    1829    |    2002    |   17179 K  |   17178 K  |
+|       from small pool |    1185    |    2731    |   46942 K  |   46940 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    3014    |    3271    |   64121 K  |   64118 K  |
+|       from large pool |    1829    |    2002    |   17179 K  |   17178 K  |
+|       from small pool |    1185    |    2731    |   46942 K  |   46940 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     493    |     898    |   13316    |   12823    |
+|       from large pool |     382    |     399    |    4510    |    4128    |
+|       from small pool |     111    |     554    |    8806    |    8695    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     234    |     686    |   37197 K  |   37197 K  |
+|       from large pool |     122    |     264    |   12514 K  |   12514 K  |
+|       from small pool |     112    |     568    |   24682 K  |   24682 K  |
+|===========================================================================|
+
+| epoch 002:     50 / 1218 loss=0.897, nll_loss=0.006, ppl=1, wps=484, ups=0, wpb=1143.294, bsz=7.961, num_updates=1268, lr=6.07719e-06, gnorm=50.763, clip=0.000, oom=0.010, loss_scale=64.000, wall=3220, train_wall=3017, accuracy=0.780788
+| epoch 002:     75 / 1218 loss=0.815, nll_loss=0.006, ppl=1, wps=478, ups=0, wpb=1145.105, bsz=7.974, num_updates=1293, lr=5.98947e-06, gnorm=51.413, clip=0.000, oom=0.010, loss_scale=64.000, wall=3281, train_wall=3078, accuracy=0.80363
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 14.73 GiB total capacity; 13.86 GiB already allocated; 17.88 MiB free; 13.95 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 14           |        cudaMalloc retries: 54        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   13710 MB |   14248 MB |   80253 GB |   80240 GB |
+|       from large pool |   13404 MB |   14010 MB |   65357 GB |   65344 GB |
+|       from small pool |     305 MB |    1069 MB |   14896 GB |   14895 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   13710 MB |   14248 MB |   80253 GB |   80240 GB |
+|       from large pool |   13404 MB |   14010 MB |   65357 GB |   65344 GB |
+|       from small pool |     305 MB |    1069 MB |   14896 GB |   14895 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14282 MB |   14296 MB |  156054 MB |  141772 MB |
+|       from large pool |   13950 MB |   14098 MB |  137406 MB |  123456 MB |
+|       from small pool |     332 MB |    1108 MB |   18648 MB |   18316 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |   71312 KB |    6053 MB |   83774 GB |   83774 GB |
+|       from large pool |   50636 KB |    5950 MB |   66884 GB |   66883 GB |
+|       from small pool |   20676 KB |     245 MB |   16890 GB |   16890 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2871    |    3271    |   67367 K  |   67364 K  |
+|       from large pool |    1447    |    2002    |   18045 K  |   18044 K  |
+|       from small pool |    1424    |    2731    |   49321 K  |   49319 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2871    |    3271    |   67367 K  |   67364 K  |
+|       from large pool |    1447    |    2002    |   18045 K  |   18044 K  |
+|       from small pool |    1424    |    2731    |   49321 K  |   49319 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     394    |     898    |   13993    |   13599    |
+|       from large pool |     228    |     399    |    4669    |    4441    |
+|       from small pool |     166    |     554    |    9324    |    9158    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     180    |     686    |   39049 K  |   39049 K  |
+|       from large pool |      39    |     264    |   13112 K  |   13112 K  |
+|       from small pool |     141    |     568    |   25936 K  |   25936 K  |
+|===========================================================================|
+
+| epoch 002:    100 / 1218 loss=0.842, nll_loss=0.006, ppl=1, wps=481, ups=0, wpb=1147.653, bsz=7.960, num_updates=1318, lr=5.90175e-06, gnorm=53.587, clip=0.000, oom=0.011, loss_scale=64.000, wall=3341, train_wall=3137, accuracy=0.793532
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 16.00 MiB (GPU 0; 14.73 GiB total capacity; 13.73 GiB already allocated; 5.88 MiB free; 13.96 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 15           |        cudaMalloc retries: 57        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14059 MB |   14248 MB |   81342 GB |   81328 GB |
+|       from large pool |   13741 MB |   14010 MB |   66246 GB |   66233 GB |
+|       from small pool |     317 MB |    1069 MB |   15095 GB |   15095 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14059 MB |   14248 MB |   81342 GB |   81328 GB |
+|       from large pool |   13741 MB |   14010 MB |   66246 GB |   66233 GB |
+|       from small pool |     317 MB |    1069 MB |   15095 GB |   15095 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14294 MB |   14296 MB |  163880 MB |  149586 MB |
+|       from large pool |   13924 MB |   14098 MB |  144516 MB |  130592 MB |
+|       from small pool |     370 MB |    1108 MB |   19364 MB |   18994 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  240386 KB |    6053 MB |   85009 GB |   85009 GB |
+|       from large pool |  186756 KB |    5950 MB |   67892 GB |   67892 GB |
+|       from small pool |   53630 KB |     245 MB |   17117 GB |   17117 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    3014    |    3271    |   68271 K  |   68268 K  |
+|       from large pool |    1633    |    2002    |   18289 K  |   18288 K  |
+|       from small pool |    1381    |    2731    |   49981 K  |   49979 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    3014    |    3271    |   68271 K  |   68268 K  |
+|       from large pool |    1633    |    2002    |   18289 K  |   18288 K  |
+|       from small pool |    1381    |    2731    |   49981 K  |   49979 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     584    |     898    |   14662    |   14078    |
+|       from large pool |     399    |     399    |    4980    |    4581    |
+|       from small pool |     185    |     554    |    9682    |    9497    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     306    |     686    |   39574 K  |   39573 K  |
+|       from large pool |     124    |     264    |   13289 K  |   13288 K  |
+|       from small pool |     182    |     568    |   26285 K  |   26285 K  |
+|===========================================================================|
+
+| epoch 002:    125 / 1218 loss=0.868, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1144.873, bsz=7.952, num_updates=1343, lr=5.81404e-06, gnorm=54.316, clip=0.000, oom=0.011, loss_scale=64.000, wall=3400, train_wall=3196, accuracy=0.783433
+| epoch 002:    150 / 1218 loss=0.856, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1146.086, bsz=7.960, num_updates=1368, lr=5.72632e-06, gnorm=52.939, clip=0.000, oom=0.011, loss_scale=64.000, wall=3460, train_wall=3255, accuracy=0.781198
+| WARNING: overflow detected, setting loss scale to: 32.0
+| epoch 002:    175 / 1218 loss=0.875, nll_loss=0.006, ppl=1, wps=475, ups=0, wpb=1144.949, bsz=7.966, num_updates=1392, lr=5.64211e-06, gnorm=53.919, clip=0.000, oom=0.011, loss_scale=32.000, wall=3521, train_wall=3315, accuracy=0.776184
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 14.00 MiB (GPU 0; 14.73 GiB total capacity; 13.76 GiB already allocated; 13.88 MiB free; 13.95 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 16           |        cudaMalloc retries: 60        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14094 MB |   14248 MB |   86084 GB |   86071 GB |
+|       from large pool |   13930 MB |   14010 MB |   70122 GB |   70108 GB |
+|       from small pool |     163 MB |    1069 MB |   15962 GB |   15962 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14094 MB |   14248 MB |   86084 GB |   86071 GB |
+|       from large pool |   13930 MB |   14010 MB |   70122 GB |   70108 GB |
+|       from small pool |     163 MB |    1069 MB |   15962 GB |   15962 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14286 MB |   14296 MB |  171916 MB |  157630 MB |
+|       from large pool |   14094 MB |   14098 MB |  151794 MB |  137700 MB |
+|       from small pool |     192 MB |    1108 MB |   20122 MB |   19930 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  195852 KB |    6053 MB |   89848 GB |   89848 GB |
+|       from large pool |  167000 KB |    5950 MB |   71741 GB |   71741 GB |
+|       from small pool |   28851 KB |     245 MB |   18107 GB |   18107 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2722    |    3271    |   72264 K  |   72262 K  |
+|       from large pool |    1629    |    2002    |   19361 K  |   19359 K  |
+|       from small pool |    1093    |    2731    |   52903 K  |   52902 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2722    |    3271    |   72264 K  |   72262 K  |
+|       from large pool |    1629    |    2002    |   19361 K  |   19359 K  |
+|       from small pool |    1093    |    2731    |   52903 K  |   52902 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     491    |     898    |   15344    |   14853    |
+|       from large pool |     395    |     399    |    5283    |    4888    |
+|       from small pool |      96    |     554    |   10061    |    9965    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     222    |     686    |   41912 K  |   41912 K  |
+|       from large pool |     115    |     264    |   14078 K  |   14078 K  |
+|       from small pool |     107    |     568    |   27834 K  |   27834 K  |
+|===========================================================================|
+
+| epoch 002:    200 / 1218 loss=0.857, nll_loss=0.006, ppl=1, wps=476, ups=0, wpb=1141.810, bsz=7.960, num_updates=1417, lr=5.55439e-06, gnorm=53.308, clip=0.000, oom=0.011, loss_scale=32.000, wall=3579, train_wall=3373, accuracy=0.77701
+| epoch 002:    225 / 1218 loss=0.849, nll_loss=0.006, ppl=1, wps=477, ups=0, wpb=1143.969, bsz=7.964, num_updates=1442, lr=5.46667e-06, gnorm=54.090, clip=0.000, oom=0.011, loss_scale=32.000, wall=3639, train_wall=3432, accuracy=0.779576
+| epoch 002:    250 / 1218 loss=0.841, nll_loss=0.006, ppl=1, wps=477, ups=0, wpb=1144.232, bsz=7.968, num_updates=1467, lr=5.37895e-06, gnorm=54.143, clip=0.000, oom=0.011, loss_scale=32.000, wall=3699, train_wall=3492, accuracy=0.782129
+| epoch 002:    275 / 1218 loss=0.834, nll_loss=0.006, ppl=1, wps=478, ups=0, wpb=1146.640, bsz=7.971, num_updates=1492, lr=5.29123e-06, gnorm=53.734, clip=0.000, oom=0.011, loss_scale=32.000, wall=3759, train_wall=3551, accuracy=0.782847
+| epoch 002:    300 / 1218 loss=0.834, nll_loss=0.006, ppl=1, wps=478, ups=0, wpb=1145.423, bsz=7.973, num_updates=1517, lr=5.20351e-06, gnorm=54.433, clip=0.000, oom=0.011, loss_scale=32.000, wall=3818, train_wall=3609, accuracy=0.783027
+| epoch 002:    325 / 1218 loss=0.848, nll_loss=0.006, ppl=1, wps=478, ups=0, wpb=1144.215, bsz=7.975, num_updates=1542, lr=5.11579e-06, gnorm=59.713, clip=0.000, oom=0.010, loss_scale=32.000, wall=3877, train_wall=3668, accuracy=0.780864
+| epoch 002:    350 / 1218 loss=0.850, nll_loss=0.006, ppl=1, wps=479, ups=0, wpb=1147.911, bsz=7.977, num_updates=1567, lr=5.02807e-06, gnorm=59.864, clip=0.000, oom=0.010, loss_scale=32.000, wall=3938, train_wall=3728, accuracy=0.780802
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 14.73 GiB total capacity; 13.87 GiB already allocated; 11.88 MiB free; 13.95 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 17           |        cudaMalloc retries: 65        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14177 MB |   14248 MB |   97052 GB |   97038 GB |
+|       from large pool |   14005 MB |   14029 MB |   79069 GB |   79055 GB |
+|       from small pool |     171 MB |    1069 MB |   17983 GB |   17982 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14177 MB |   14248 MB |   97052 GB |   97038 GB |
+|       from large pool |   14005 MB |   14029 MB |   79069 GB |   79055 GB |
+|       from small pool |     171 MB |    1069 MB |   17983 GB |   17982 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14288 MB |   14296 MB |  187206 MB |  172918 MB |
+|       from large pool |   14072 MB |   14098 MB |  165250 MB |  151178 MB |
+|       from small pool |     216 MB |    1108 MB |   21956 MB |   21740 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |   88276 KB |    6053 MB |  101054 GB |  101054 GB |
+|       from large pool |   43183 KB |    5950 MB |   80645 GB |   80645 GB |
+|       from small pool |   45093 KB |     245 MB |   20408 GB |   20408 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2953    |    3271    |   81463 K  |   81460 K  |
+|       from large pool |    1786    |    2002    |   21817 K  |   21816 K  |
+|       from small pool |    1167    |    2731    |   59645 K  |   59644 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2953    |    3271    |   81463 K  |   81460 K  |
+|       from large pool |    1786    |    2002    |   21817 K  |   21816 K  |
+|       from small pool |    1167    |    2731    |   59645 K  |   59644 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     515    |     905    |   16801    |   16286    |
+|       from large pool |     407    |     407    |    5823    |    5416    |
+|       from small pool |     108    |     554    |   10978    |   10870    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     141    |     686    |   47288 K  |   47288 K  |
+|       from large pool |      32    |     264    |   15890 K  |   15890 K  |
+|       from small pool |     109    |     568    |   31398 K  |   31398 K  |
+|===========================================================================|
+
+| epoch 002:    375 / 1218 loss=0.852, nll_loss=0.006, ppl=1, wps=479, ups=0, wpb=1147.197, bsz=7.973, num_updates=1592, lr=4.94035e-06, gnorm=59.587, clip=0.000, oom=0.011, loss_scale=32.000, wall=3998, train_wall=3788, accuracy=0.777592
+| epoch 002:    400 / 1218 loss=0.854, nll_loss=0.006, ppl=1, wps=479, ups=0, wpb=1148.547, bsz=7.975, num_updates=1617, lr=4.85263e-06, gnorm=59.334, clip=0.000, oom=0.011, loss_scale=32.000, wall=4058, train_wall=3847, accuracy=0.777116
+| epoch 002:    425 / 1218 loss=0.848, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1149.838, bsz=7.976, num_updates=1642, lr=4.76491e-06, gnorm=58.840, clip=0.000, oom=0.010, loss_scale=32.000, wall=4118, train_wall=3906, accuracy=0.777876
+| epoch 002:    450 / 1218 loss=0.852, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1150.884, bsz=7.978, num_updates=1667, lr=4.67719e-06, gnorm=58.816, clip=0.000, oom=0.010, loss_scale=32.000, wall=4177, train_wall=3965, accuracy=0.779387
+| epoch 002:    475 / 1218 loss=0.847, nll_loss=0.006, ppl=1, wps=481, ups=0, wpb=1150.461, bsz=7.979, num_updates=1692, lr=4.58947e-06, gnorm=58.520, clip=0.000, oom=0.010, loss_scale=32.000, wall=4236, train_wall=4023, accuracy=0.780211
+| epoch 002:    500 / 1218 loss=0.850, nll_loss=0.006, ppl=1, wps=481, ups=0, wpb=1151.196, bsz=7.980, num_updates=1717, lr=4.50175e-06, gnorm=59.585, clip=0.000, oom=0.010, loss_scale=32.000, wall=4295, train_wall=4082, accuracy=0.779198
+| epoch 002:    525 / 1218 loss=0.858, nll_loss=0.006, ppl=1, wps=481, ups=0, wpb=1151.299, bsz=7.981, num_updates=1742, lr=4.41404e-06, gnorm=59.490, clip=0.000, oom=0.010, loss_scale=32.000, wall=4356, train_wall=4142, accuracy=0.777088
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 14.73 GiB total capacity; 13.64 GiB already allocated; 15.88 MiB free; 13.95 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 18           |        cudaMalloc retries: 69        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   13941 MB |   14248 MB |  107264 GB |  107250 GB |
+|       from large pool |   13754 MB |   14029 MB |   87406 GB |   87393 GB |
+|       from small pool |     186 MB |    1069 MB |   19857 GB |   19857 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   13941 MB |   14248 MB |  107264 GB |  107250 GB |
+|       from large pool |   13754 MB |   14029 MB |   87406 GB |   87393 GB |
+|       from small pool |     186 MB |    1069 MB |   19857 GB |   19857 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14284 MB |   14296 MB |  201754 MB |  187470 MB |
+|       from large pool |   14040 MB |   14098 MB |  178034 MB |  163994 MB |
+|       from small pool |     244 MB |    1108 MB |   23720 MB |   23476 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  321918 KB |    6053 MB |  112488 GB |  112488 GB |
+|       from large pool |  263474 KB |    5950 MB |   89943 GB |   89943 GB |
+|       from small pool |   58443 KB |     245 MB |   22544 GB |   22544 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2840    |    3271    |   90023 K  |   90021 K  |
+|       from large pool |    1835    |    2002    |   24113 K  |   24111 K  |
+|       from small pool |    1005    |    2731    |   65910 K  |   65909 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2840    |    3271    |   90023 K  |   90021 K  |
+|       from large pool |    1835    |    2002    |   24113 K  |   24111 K  |
+|       from small pool |    1005    |    2731    |   65910 K  |   65909 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     368    |     905    |   18133    |   17765    |
+|       from large pool |     246    |     407    |    6273    |    6027    |
+|       from small pool |     122    |     554    |   11860    |   11738    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     308    |     686    |   52084 K  |   52084 K  |
+|       from large pool |     186    |     264    |   17389 K  |   17389 K  |
+|       from small pool |     122    |     568    |   34695 K  |   34695 K  |
+|===========================================================================|
+
+| epoch 002:    550 / 1218 loss=0.859, nll_loss=0.006, ppl=1, wps=481, ups=0, wpb=1150.980, bsz=7.978, num_updates=1767, lr=4.32632e-06, gnorm=59.030, clip=0.000, oom=0.010, loss_scale=32.000, wall=4415, train_wall=4201, accuracy=0.777803
+| epoch 002:    575 / 1218 loss=0.858, nll_loss=0.006, ppl=1, wps=481, ups=0, wpb=1150.717, bsz=7.979, num_updates=1792, lr=4.2386e-06, gnorm=61.228, clip=0.000, oom=0.010, loss_scale=32.000, wall=4475, train_wall=4260, accuracy=0.778335
+| epoch 002:    600 / 1218 loss=0.861, nll_loss=0.006, ppl=1, wps=481, ups=0, wpb=1150.878, bsz=7.980, num_updates=1817, lr=4.15088e-06, gnorm=61.237, clip=0.000, oom=0.010, loss_scale=32.000, wall=4535, train_wall=4319, accuracy=0.778613
+| epoch 002:    625 / 1218 loss=0.858, nll_loss=0.006, ppl=1, wps=481, ups=0, wpb=1151.122, bsz=7.981, num_updates=1842, lr=4.06316e-06, gnorm=60.815, clip=0.000, oom=0.010, loss_scale=32.000, wall=4594, train_wall=4378, accuracy=0.778669
+| epoch 002:    650 / 1218 loss=0.863, nll_loss=0.006, ppl=1, wps=481, ups=0, wpb=1150.403, bsz=7.982, num_updates=1867, lr=3.97544e-06, gnorm=60.994, clip=0.000, oom=0.010, loss_scale=32.000, wall=4654, train_wall=4437, accuracy=0.7766
+| epoch 002:    675 / 1218 loss=0.870, nll_loss=0.006, ppl=1, wps=481, ups=0, wpb=1150.450, bsz=7.982, num_updates=1892, lr=3.88772e-06, gnorm=60.998, clip=0.000, oom=0.010, loss_scale=32.000, wall=4715, train_wall=4497, accuracy=0.774684
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 14.00 MiB (GPU 0; 14.73 GiB total capacity; 13.88 GiB already allocated; 7.88 MiB free; 13.96 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 19           |        cudaMalloc retries: 74        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14213 MB |   14248 MB |  115677 GB |  115664 GB |
+|       from large pool |   13915 MB |   14029 MB |   94285 GB |   94272 GB |
+|       from small pool |     297 MB |    1069 MB |   21392 GB |   21391 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14213 MB |   14248 MB |  115677 GB |  115664 GB |
+|       from large pool |   13915 MB |   14029 MB |   94285 GB |   94272 GB |
+|       from small pool |     297 MB |    1069 MB |   21392 GB |   21391 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14292 MB |   14296 MB |  216258 MB |  201966 MB |
+|       from large pool |   13960 MB |   14098 MB |  190982 MB |  177022 MB |
+|       from small pool |     332 MB |    1108 MB |   25276 MB |   24944 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |   80620 KB |    6053 MB |  121557 GB |  121557 GB |
+|       from large pool |   45085 KB |    5950 MB |   97263 GB |   97263 GB |
+|       from small pool |   35535 KB |     245 MB |   24293 GB |   24293 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    3145    |    3271    |   97058 K  |   97054 K  |
+|       from large pool |    1700    |    2002    |   26009 K  |   26007 K  |
+|       from small pool |    1445    |    2731    |   71048 K  |   71047 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    3145    |    3271    |   97058 K  |   97054 K  |
+|       from large pool |    1700    |    2002    |   26009 K  |   26007 K  |
+|       from small pool |    1445    |    2731    |   71048 K  |   71047 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     504    |     905    |   19355    |   18851    |
+|       from large pool |     338    |     407    |    6717    |    6379    |
+|       from small pool |     166    |     554    |   12638    |   12472    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     159    |     686    |   56181 K  |   56181 K  |
+|       from large pool |      26    |     264    |   18776 K  |   18776 K  |
+|       from small pool |     133    |     568    |   37405 K  |   37405 K  |
+|===========================================================================|
+
+| epoch 002:    700 / 1218 loss=0.865, nll_loss=0.006, ppl=1, wps=481, ups=0, wpb=1149.531, bsz=7.979, num_updates=1917, lr=3.8e-06, gnorm=60.563, clip=0.000, oom=0.010, loss_scale=32.000, wall=4774, train_wall=4556, accuracy=0.776186
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 16.00 MiB (GPU 0; 14.73 GiB total capacity; 13.64 GiB already allocated; 7.88 MiB free; 13.96 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 20           |        cudaMalloc retries: 77        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   13968 MB |   14248 MB |  117374 GB |  117360 GB |
+|       from large pool |   13614 MB |   14029 MB |   95671 GB |   95658 GB |
+|       from small pool |     353 MB |    1069 MB |   21702 GB |   21701 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   13968 MB |   14248 MB |  117374 GB |  117360 GB |
+|       from large pool |   13614 MB |   14029 MB |   95671 GB |   95658 GB |
+|       from small pool |     353 MB |    1069 MB |   21702 GB |   21701 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14292 MB |   14296 MB |  224212 MB |  209920 MB |
+|       from large pool |   13924 MB |   14098 MB |  198174 MB |  184250 MB |
+|       from small pool |     368 MB |    1108 MB |   26038 MB |   25670 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  331573 KB |    6053 MB |  123311 GB |  123310 GB |
+|       from large pool |  317024 KB |    5950 MB |   98663 GB |   98663 GB |
+|       from small pool |   14549 KB |     245 MB |   24647 GB |   24647 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2673    |    3271    |   98486 K  |   98484 K  |
+|       from large pool |    1398    |    2002    |   26392 K  |   26391 K  |
+|       from small pool |    1275    |    2731    |   72094 K  |   72092 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2673    |    3271    |   98486 K  |   98484 K  |
+|       from large pool |    1398    |    2002    |   26392 K  |   26391 K  |
+|       from small pool |    1275    |    2731    |   72094 K  |   72092 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     561    |     905    |   20028    |   19467    |
+|       from large pool |     377    |     407    |    7009    |    6632    |
+|       from small pool |     184    |     554    |   13019    |   12835    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     307    |     686    |   57022 K  |   57021 K  |
+|       from large pool |     193    |     264    |   19058 K  |   19058 K  |
+|       from small pool |     114    |     568    |   37963 K  |   37963 K  |
+|===========================================================================|
+
+| epoch 002:    725 / 1218 loss=0.866, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1149.291, bsz=7.977, num_updates=1942, lr=3.71228e-06, gnorm=61.811, clip=0.000, oom=0.010, loss_scale=32.000, wall=4834, train_wall=4615, accuracy=0.775376
+| epoch 002:    750 / 1218 loss=0.868, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1149.832, bsz=7.977, num_updates=1967, lr=3.62456e-06, gnorm=61.735, clip=0.000, oom=0.010, loss_scale=32.000, wall=4895, train_wall=4676, accuracy=0.775364
+| epoch 002:    775 / 1218 loss=0.865, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1149.809, bsz=7.978, num_updates=1992, lr=3.53684e-06, gnorm=61.284, clip=0.000, oom=0.010, loss_scale=32.000, wall=4955, train_wall=4735, accuracy=0.77616
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 16.00 MiB (GPU 0; 14.73 GiB total capacity; 13.88 GiB already allocated; 9.88 MiB free; 13.96 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 21           |        cudaMalloc retries: 80        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14217 MB |   14248 MB |  122324 GB |  122310 GB |
+|       from large pool |   13883 MB |   14029 MB |   99717 GB |   99704 GB |
+|       from small pool |     333 MB |    1069 MB |   22606 GB |   22606 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14217 MB |   14248 MB |  122324 GB |  122310 GB |
+|       from large pool |   13883 MB |   14029 MB |   99717 GB |   99704 GB |
+|       from small pool |     333 MB |    1069 MB |   22606 GB |   22606 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14290 MB |   14296 MB |  232052 MB |  217762 MB |
+|       from large pool |   13946 MB |   14098 MB |  205260 MB |  191314 MB |
+|       from small pool |     344 MB |    1108 MB |   26792 MB |   26448 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |   74127 KB |    6053 MB |  128494 GB |  128494 GB |
+|       from large pool |   63549 KB |    5950 MB |  102817 GB |  102817 GB |
+|       from small pool |   10578 KB |     245 MB |   25677 GB |   25677 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2761    |    3271    |  102593 K  |  102590 K  |
+|       from large pool |    1364    |    2002    |   27500 K  |   27499 K  |
+|       from small pool |    1397    |    2731    |   75092 K  |   75091 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2761    |    3271    |  102593 K  |  102590 K  |
+|       from large pool |    1364    |    2002    |   27500 K  |   27499 K  |
+|       from small pool |    1397    |    2731    |   75092 K  |   75091 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     486    |     905    |   20626    |   20140    |
+|       from large pool |     314    |     407    |    7230    |    6916    |
+|       from small pool |     172    |     554    |   13396    |   13224    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     166    |     686    |   59424 K  |   59424 K  |
+|       from large pool |      38    |     264    |   19873 K  |   19873 K  |
+|       from small pool |     128    |     568    |   39551 K  |   39551 K  |
+|===========================================================================|
+
+| epoch 002:    800 / 1218 loss=0.869, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1149.525, bsz=7.976, num_updates=2017, lr=3.44912e-06, gnorm=61.429, clip=0.000, oom=0.010, loss_scale=32.000, wall=5016, train_wall=4795, accuracy=0.77527
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 14.73 GiB total capacity; 13.76 GiB already allocated; 21.88 MiB free; 13.94 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 22           |        cudaMalloc retries: 83        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14081 MB |   14248 MB |  123927 GB |  123913 GB |
+|       from large pool |   13916 MB |   14029 MB |  101030 GB |  101017 GB |
+|       from small pool |     164 MB |    1069 MB |   22896 GB |   22896 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14081 MB |   14248 MB |  123927 GB |  123913 GB |
+|       from large pool |   13916 MB |   14029 MB |  101030 GB |  101017 GB |
+|       from small pool |     164 MB |    1069 MB |   22896 GB |   22896 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14278 MB |   14296 MB |  240118 MB |  225840 MB |
+|       from large pool |   14082 MB |   14098 MB |  212540 MB |  198458 MB |
+|       from small pool |     196 MB |    1108 MB |   27578 MB |   27382 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  189437 KB |    6053 MB |  130143 GB |  130143 GB |
+|       from large pool |  157004 KB |    5950 MB |  104135 GB |  104135 GB |
+|       from small pool |   32433 KB |     245 MB |   26007 GB |   26007 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2753    |    3271    |  103922 K  |  103920 K  |
+|       from large pool |    1650    |    2002    |   27861 K  |   27860 K  |
+|       from small pool |    1103    |    2731    |   76061 K  |   76060 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2753    |    3271    |  103922 K  |  103920 K  |
+|       from large pool |    1650    |    2002    |   27861 K  |   27860 K  |
+|       from small pool |    1103    |    2731    |   76061 K  |   76060 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     490    |     905    |   21321    |   20831    |
+|       from large pool |     392    |     407    |    7532    |    7140    |
+|       from small pool |      98    |     554    |   13789    |   13691    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     207    |     686    |   60202 K  |   60202 K  |
+|       from large pool |     130    |     264    |   20138 K  |   20138 K  |
+|       from small pool |      77    |     570    |   40063 K  |   40063 K  |
+|===========================================================================|
+
+| epoch 002:    825 / 1218 loss=0.864, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1149.382, bsz=7.975, num_updates=2042, lr=3.3614e-06, gnorm=61.102, clip=0.000, oom=0.011, loss_scale=32.000, wall=5076, train_wall=4854, accuracy=0.777018
+| epoch 002:    850 / 1218 loss=0.864, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1148.525, bsz=7.975, num_updates=2067, lr=3.27368e-06, gnorm=61.076, clip=0.000, oom=0.011, loss_scale=32.000, wall=5135, train_wall=4913, accuracy=0.776958
+| epoch 002:    875 / 1218 loss=0.864, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1148.697, bsz=7.976, num_updates=2092, lr=3.18596e-06, gnorm=60.666, clip=0.000, oom=0.011, loss_scale=32.000, wall=5194, train_wall=4971, accuracy=0.776042
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 14.73 GiB total capacity; 13.78 GiB already allocated; 13.88 MiB free; 13.95 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 23           |        cudaMalloc retries: 86        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14104 MB |   14248 MB |  127464 GB |  127450 GB |
+|       from large pool |   13839 MB |   14029 MB |  103912 GB |  103898 GB |
+|       from small pool |     264 MB |    1069 MB |   23552 GB |   23552 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14104 MB |   14248 MB |  127464 GB |  127450 GB |
+|       from large pool |   13839 MB |   14029 MB |  103912 GB |  103898 GB |
+|       from small pool |     264 MB |    1069 MB |   23552 GB |   23552 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14286 MB |   14296 MB |  248590 MB |  234304 MB |
+|       from large pool |   13980 MB |   14098 MB |  220004 MB |  206024 MB |
+|       from small pool |     306 MB |    1108 MB |   28586 MB |   28280 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  185840 KB |    6053 MB |  134180 GB |  134180 GB |
+|       from large pool |  143695 KB |    5950 MB |  107424 GB |  107424 GB |
+|       from small pool |   42145 KB |     245 MB |   26755 GB |   26755 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    3133    |    3271    |  106929 K  |  106926 K  |
+|       from large pool |    1748    |    2002    |   28659 K  |   28658 K  |
+|       from small pool |    1385    |    2731    |   78269 K  |   78267 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    3133    |    3271    |  106929 K  |  106926 K  |
+|       from large pool |    1748    |    2002    |   28659 K  |   28658 K  |
+|       from small pool |    1385    |    2731    |   78269 K  |   78267 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     487    |     905    |   22092    |   21605    |
+|       from large pool |     334    |     407    |    7799    |    7465    |
+|       from small pool |     153    |     554    |   14293    |   14140    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     257    |     686    |   61935 K  |   61934 K  |
+|       from large pool |     104    |     264    |   20706 K  |   20706 K  |
+|       from small pool |     153    |     570    |   41228 K  |   41227 K  |
+|===========================================================================|
+
+| epoch 002:    900 / 1218 loss=0.863, nll_loss=0.006, ppl=1, wps=479, ups=0, wpb=1147.670, bsz=7.974, num_updates=2117, lr=3.09825e-06, gnorm=60.399, clip=0.000, oom=0.011, loss_scale=32.000, wall=5254, train_wall=5030, accuracy=0.776508
+| epoch 002:    925 / 1218 loss=0.864, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1148.248, bsz=7.975, num_updates=2142, lr=3.01053e-06, gnorm=60.204, clip=0.000, oom=0.011, loss_scale=32.000, wall=5314, train_wall=5090, accuracy=0.776603
+| epoch 002:    950 / 1218 loss=0.864, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1149.188, bsz=7.976, num_updates=2167, lr=2.92281e-06, gnorm=59.979, clip=0.000, oom=0.011, loss_scale=32.000, wall=5375, train_wall=5151, accuracy=0.775901
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 14.73 GiB total capacity; 13.74 GiB already allocated; 19.88 MiB free; 13.95 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 24           |        cudaMalloc retries: 92        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   13548 MB |   14248 MB |  132236 GB |  132223 GB |
+|       from large pool |   13363 MB |   14029 MB |  107833 GB |  107820 GB |
+|       from small pool |     184 MB |    1069 MB |   24403 GB |   24403 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   13548 MB |   14248 MB |  132236 GB |  132223 GB |
+|       from large pool |   13363 MB |   14029 MB |  107833 GB |  107820 GB |
+|       from small pool |     184 MB |    1069 MB |   24403 GB |   24403 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14280 MB |   14296 MB |  257066 MB |  242786 MB |
+|       from large pool |   14080 MB |   14098 MB |  227028 MB |  212948 MB |
+|       from small pool |     200 MB |    1108 MB |   30038 MB |   29838 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  113747 KB |    6053 MB |  138950 GB |  138950 GB |
+|       from large pool |   98336 KB |    5950 MB |  111224 GB |  111224 GB |
+|       from small pool |   15410 KB |     245 MB |   27726 GB |   27726 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2440    |    3271    |  110887 K  |  110884 K  |
+|       from large pool |    1527    |    2002    |   29737 K  |   29735 K  |
+|       from small pool |     913    |    2731    |   81149 K  |   81149 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2440    |    3271    |  110887 K  |  110884 K  |
+|       from large pool |    1527    |    2002    |   29737 K  |   29735 K  |
+|       from small pool |     913    |    2731    |   81149 K  |   81149 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     493    |     905    |   23087    |   22594    |
+|       from large pool |     393    |     407    |    8068    |    7675    |
+|       from small pool |     100    |     554    |   15019    |   14919    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     126    |     686    |   64262 K  |   64262 K  |
+|       from large pool |      73    |     264    |   21515 K  |   21515 K  |
+|       from small pool |      53    |     570    |   42747 K  |   42747 K  |
+|===========================================================================|
+
+| epoch 002:    975 / 1218 loss=0.863, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1149.800, bsz=7.974, num_updates=2192, lr=2.83509e-06, gnorm=59.735, clip=0.000, oom=0.011, loss_scale=32.000, wall=5435, train_wall=5210, accuracy=0.776592
+| WARNING: overflow detected, setting loss scale to: 16.0
+| epoch 002:   1000 / 1218 loss=0.861, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1149.999, bsz=7.975, num_updates=2216, lr=2.75088e-06, gnorm=59.552, clip=0.000, oom=0.011, loss_scale=16.000, wall=5495, train_wall=5270, accuracy=0.776453
+| epoch 002:   1025 / 1218 loss=0.860, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1150.041, bsz=7.976, num_updates=2241, lr=2.66316e-06, gnorm=59.901, clip=0.000, oom=0.011, loss_scale=16.000, wall=5555, train_wall=5329, accuracy=0.777152
+| epoch 002:   1050 / 1218 loss=0.857, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1150.840, bsz=7.976, num_updates=2266, lr=2.57544e-06, gnorm=59.730, clip=0.000, oom=0.011, loss_scale=16.000, wall=5615, train_wall=5388, accuracy=0.777937
+| epoch 002:   1075 / 1218 loss=0.855, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1150.251, bsz=7.977, num_updates=2291, lr=2.48772e-06, gnorm=59.730, clip=0.000, oom=0.010, loss_scale=16.000, wall=5673, train_wall=5446, accuracy=0.777518
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 14.00 MiB (GPU 0; 14.73 GiB total capacity; 13.62 GiB already allocated; 3.88 MiB free; 13.96 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 25           |        cudaMalloc retries: 95        |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   13943 MB |   14248 MB |  139295 GB |  139281 GB |
+|       from large pool |   13604 MB |   14029 MB |  113588 GB |  113575 GB |
+|       from small pool |     338 MB |    1069 MB |   25706 GB |   25706 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   13943 MB |   14248 MB |  139295 GB |  139281 GB |
+|       from large pool |   13604 MB |   14029 MB |  113588 GB |  113575 GB |
+|       from small pool |     338 MB |    1069 MB |   25706 GB |   25706 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14296 MB |   14296 MB |  265398 MB |  251102 MB |
+|       from large pool |   13926 MB |   14098 MB |  234438 MB |  220512 MB |
+|       from small pool |     370 MB |    1108 MB |   30960 MB |   30590 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  361379 KB |    6053 MB |  146205 GB |  146204 GB |
+|       from large pool |  328916 KB |    5950 MB |  116995 GB |  116994 GB |
+|       from small pool |   32462 KB |     245 MB |   29209 GB |   29209 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2785    |    3271    |  116807 K  |  116804 K  |
+|       from large pool |    1472    |    2002    |   31322 K  |   31321 K  |
+|       from small pool |    1313    |    2731    |   85484 K  |   85483 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2785    |    3271    |  116807 K  |  116804 K  |
+|       from large pool |    1472    |    2002    |   31322 K  |   31321 K  |
+|       from small pool |    1313    |    2731    |   85484 K  |   85483 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     540    |     905    |   23836    |   23296    |
+|       from large pool |     355    |     407    |    8356    |    8001    |
+|       from small pool |     185    |     554    |   15480    |   15295    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     420    |     686    |   67728 K  |   67727 K  |
+|       from large pool |     235    |     264    |   22683 K  |   22683 K  |
+|       from small pool |     185    |     570    |   45044 K  |   45044 K  |
+|===========================================================================|
+
+| epoch 002:   1100 / 1218 loss=0.852, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1150.353, bsz=7.975, num_updates=2316, lr=2.4e-06, gnorm=59.624, clip=0.000, oom=0.011, loss_scale=16.000, wall=5734, train_wall=5506, accuracy=0.777981
+| epoch 002:   1125 / 1218 loss=0.854, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1150.541, bsz=7.976, num_updates=2341, lr=2.31228e-06, gnorm=59.692, clip=0.000, oom=0.011, loss_scale=16.000, wall=5793, train_wall=5564, accuracy=0.777579
+| epoch 002:   1150 / 1218 loss=0.853, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1150.722, bsz=7.977, num_updates=2366, lr=2.22456e-06, gnorm=59.717, clip=0.000, oom=0.011, loss_scale=16.000, wall=5852, train_wall=5623, accuracy=0.778069
+| epoch 002:   1175 / 1218 loss=0.853, nll_loss=0.006, ppl=1, wps=481, ups=0, wpb=1151.069, bsz=7.977, num_updates=2391, lr=2.13684e-06, gnorm=59.775, clip=0.000, oom=0.010, loss_scale=16.000, wall=5911, train_wall=5682, accuracy=0.778003
+| epoch 002:   1200 / 1218 loss=0.852, nll_loss=0.006, ppl=1, wps=480, ups=0, wpb=1150.981, bsz=7.977, num_updates=2416, lr=2.04912e-06, gnorm=59.499, clip=0.000, oom=0.010, loss_scale=16.000, wall=5971, train_wall=5741, accuracy=0.778672
+| epoch 002 | loss 0.852 | nll_loss 0.006 | ppl 1 | wps 481 | ups 0 | wpb 1150.686 | bsz 7.976 | num_updates 2433 | lr 1.98947e-06 | gnorm 59.562 | clip 0.000 | oom 0.010 | loss_scale 16.000 | wall 6011 | train_wall 5781 | accuracy 0.778225
+| WARNING: attempting to recover from OOM in forward/backward pass
+| epoch 002 | valid on 'valid' subset | loss 0.954 | nll_loss 0.007 | ppl 1 | num_updates 2433 | best_accuracy 0.762684 | accuracy 0.762684
+| saved checkpoint ./checkpoints/checkpoint_best.pt (epoch 2 @ 2433 updates) (writing took 4.235055208206177 seconds)
+| epoch 003:     25 / 1218 loss=0.587, nll_loss=0.004, ppl=1, wps=491, ups=0, wpb=1138.269, bsz=8.000, num_updates=2459, lr=1.89825e-06, gnorm=54.081, clip=0.000, oom=0.010, loss_scale=16.000, wall=6164, train_wall=5840, accuracy=0.860577
+| epoch 003:     50 / 1218 loss=0.488, nll_loss=0.003, ppl=1, wps=488, ups=0, wpb=1142.588, bsz=8.000, num_updates=2484, lr=1.81053e-06, gnorm=46.476, clip=0.000, oom=0.010, loss_scale=16.000, wall=6223, train_wall=5899, accuracy=0.875
+| epoch 003:     75 / 1218 loss=0.496, nll_loss=0.003, ppl=1, wps=487, ups=0, wpb=1150.434, bsz=8.000, num_updates=2509, lr=1.72281e-06, gnorm=47.554, clip=0.000, oom=0.010, loss_scale=16.000, wall=6284, train_wall=5959, accuracy=0.871711
+| epoch 003:    100 / 1218 loss=0.488, nll_loss=0.003, ppl=1, wps=488, ups=0, wpb=1156.446, bsz=8.000, num_updates=2534, lr=1.63509e-06, gnorm=48.075, clip=0.000, oom=0.010, loss_scale=16.000, wall=6343, train_wall=6018, accuracy=0.877475
+| epoch 003:    125 / 1218 loss=0.489, nll_loss=0.003, ppl=1, wps=489, ups=0, wpb=1159.524, bsz=8.000, num_updates=2559, lr=1.54737e-06, gnorm=48.295, clip=0.000, oom=0.010, loss_scale=16.000, wall=6403, train_wall=6077, accuracy=0.874008
+| epoch 003:    150 / 1218 loss=0.495, nll_loss=0.003, ppl=1, wps=488, ups=0, wpb=1156.748, bsz=8.000, num_updates=2584, lr=1.45965e-06, gnorm=50.388, clip=0.000, oom=0.010, loss_scale=16.000, wall=6462, train_wall=6135, accuracy=0.870861
+| epoch 003:    175 / 1218 loss=0.501, nll_loss=0.003, ppl=1, wps=487, ups=0, wpb=1158.977, bsz=8.000, num_updates=2609, lr=1.37193e-06, gnorm=51.315, clip=0.000, oom=0.010, loss_scale=16.000, wall=6523, train_wall=6195, accuracy=0.870739
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 14.73 GiB total capacity; 13.67 GiB already allocated; 19.88 MiB free; 13.95 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 26           |        cudaMalloc retries: 103       |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   13987 MB |   14248 MB |  160049 GB |  160035 GB |
+|       from large pool |   13801 MB |   14029 MB |  130368 GB |  130354 GB |
+|       from small pool |     186 MB |    1069 MB |   29680 GB |   29680 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   13987 MB |   14248 MB |  160049 GB |  160035 GB |
+|       from large pool |   13801 MB |   14029 MB |  130368 GB |  130354 GB |
+|       from small pool |     186 MB |    1069 MB |   29680 GB |   29680 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14280 MB |   14296 MB |  289488 MB |  275208 MB |
+|       from large pool |   14038 MB |   14098 MB |  256110 MB |  242072 MB |
+|       from small pool |     242 MB |    1108 MB |   33378 MB |   33136 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  287448 KB |    6053 MB |  167047 GB |  167046 GB |
+|       from large pool |  230215 KB |    5950 MB |  133384 GB |  133384 GB |
+|       from small pool |   57233 KB |     245 MB |   33662 GB |   33662 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2832    |    3271    |  134339 K  |  134336 K  |
+|       from large pool |    1829    |    2002    |   36001 K  |   35999 K  |
+|       from small pool |    1003    |    2731    |   98338 K  |   98337 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2832    |    3271    |  134339 K  |  134336 K  |
+|       from large pool |    1829    |    2002    |   36001 K  |   35999 K  |
+|       from small pool |    1003    |    2731    |   98338 K  |   98337 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     490    |     919    |   25782    |   25292    |
+|       from large pool |     369    |     407    |    9093    |    8724    |
+|       from small pool |     121    |     554    |   16689    |   16568    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     289    |     686    |   77633 K  |   77633 K  |
+|       from large pool |     168    |     299    |   26205 K  |   26205 K  |
+|       from small pool |     121    |     570    |   51428 K  |   51428 K  |
+|===========================================================================|
+
+| epoch 003:    200 / 1218 loss=0.498, nll_loss=0.003, ppl=1, wps=485, ups=0, wpb=1151.587, bsz=7.990, num_updates=2634, lr=1.28421e-06, gnorm=51.917, clip=0.000, oom=0.010, loss_scale=16.000, wall=6581, train_wall=6253, accuracy=0.871108
+| epoch 003:    225 / 1218 loss=0.496, nll_loss=0.003, ppl=1, wps=487, ups=0, wpb=1156.248, bsz=7.991, num_updates=2659, lr=1.19649e-06, gnorm=52.729, clip=0.000, oom=0.010, loss_scale=16.000, wall=6641, train_wall=6312, accuracy=0.872647
+| epoch 003:    250 / 1218 loss=0.497, nll_loss=0.003, ppl=1, wps=487, ups=0, wpb=1159.510, bsz=7.992, num_updates=2684, lr=1.10877e-06, gnorm=52.674, clip=0.000, oom=0.010, loss_scale=16.000, wall=6701, train_wall=6372, accuracy=0.871884
+| epoch 003:    275 / 1218 loss=0.493, nll_loss=0.003, ppl=1, wps=488, ups=0, wpb=1159.087, bsz=7.993, num_updates=2709, lr=1.02105e-06, gnorm=52.665, clip=0.000, oom=0.010, loss_scale=16.000, wall=6760, train_wall=6430, accuracy=0.873073
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 14.73 GiB total capacity; 13.70 GiB already allocated; 9.88 MiB free; 13.96 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 27           |        cudaMalloc retries: 107       |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   13996 MB |   14248 MB |  166766 GB |  166752 GB |
+|       from large pool |   13657 MB |   14029 MB |  135860 GB |  135847 GB |
+|       from small pool |     339 MB |    1069 MB |   30905 GB |   30905 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   13996 MB |   14248 MB |  166766 GB |  166752 GB |
+|       from large pool |   13657 MB |   14029 MB |  135860 GB |  135847 GB |
+|       from small pool |     339 MB |    1069 MB |   30905 GB |   30905 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14290 MB |   14296 MB |  298680 MB |  284390 MB |
+|       from large pool |   13918 MB |   14098 MB |  263496 MB |  249578 MB |
+|       from small pool |     372 MB |    1108 MB |   35184 MB |   34812 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  267728 KB |    6053 MB |  173899 GB |  173898 GB |
+|       from large pool |  234171 KB |    5950 MB |  138840 GB |  138840 GB |
+|       from small pool |   33556 KB |     245 MB |   35058 GB |   35058 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2794    |    3271    |  139947 K  |  139944 K  |
+|       from large pool |    1479    |    2002    |   37511 K  |   37510 K  |
+|       from small pool |    1315    |    2731    |  102435 K  |  102434 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2794    |    3271    |  139947 K  |  139944 K  |
+|       from large pool |    1479    |    2002    |   37511 K  |   37510 K  |
+|       from small pool |    1315    |    2731    |  102435 K  |  102434 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     549    |     919    |   26977    |   26428    |
+|       from large pool |     363    |     407    |    9385    |    9022    |
+|       from small pool |     186    |     554    |   17592    |   17406    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     357    |     686    |   80917 K  |   80916 K  |
+|       from large pool |     173    |     299    |   27322 K  |   27322 K  |
+|       from small pool |     184    |     570    |   53594 K  |   53594 K  |
+|===========================================================================|
+
+| epoch 003:    300 / 1218 loss=0.494, nll_loss=0.003, ppl=1, wps=487, ups=0, wpb=1159.429, bsz=7.987, num_updates=2734, lr=9.33333e-07, gnorm=52.956, clip=0.000, oom=0.010, loss_scale=16.000, wall=6820, train_wall=6490, accuracy=0.873128
+| epoch 003:    325 / 1218 loss=0.499, nll_loss=0.003, ppl=1, wps=487, ups=0, wpb=1157.755, bsz=7.988, num_updates=2759, lr=8.45614e-07, gnorm=53.142, clip=0.000, oom=0.010, loss_scale=16.000, wall=6879, train_wall=6548, accuracy=0.872504
+| epoch 003:    350 / 1218 loss=0.494, nll_loss=0.003, ppl=1, wps=487, ups=0, wpb=1158.957, bsz=7.989, num_updates=2784, lr=7.57895e-07, gnorm=53.065, clip=0.000, oom=0.010, loss_scale=16.000, wall=6939, train_wall=6607, accuracy=0.874465
+| epoch 003:    375 / 1218 loss=0.502, nll_loss=0.003, ppl=1, wps=486, ups=0, wpb=1155.867, bsz=7.989, num_updates=2809, lr=6.70175e-07, gnorm=56.606, clip=0.000, oom=0.010, loss_scale=16.000, wall=6997, train_wall=6665, accuracy=0.871838
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 14.00 MiB (GPU 0; 14.73 GiB total capacity; 13.85 GiB already allocated; 9.88 MiB free; 13.96 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 28           |        cudaMalloc retries: 110       |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14185 MB |   14248 MB |  172083 GB |  172069 GB |
+|       from large pool |   13889 MB |   14029 MB |  140206 GB |  140192 GB |
+|       from small pool |     296 MB |    1069 MB |   31877 GB |   31877 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14185 MB |   14248 MB |  172083 GB |  172069 GB |
+|       from large pool |   13889 MB |   14029 MB |  140206 GB |  140192 GB |
+|       from small pool |     296 MB |    1069 MB |   31877 GB |   31877 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14290 MB |   14296 MB |  306602 MB |  292312 MB |
+|       from large pool |   13960 MB |   14098 MB |  270664 MB |  256704 MB |
+|       from small pool |     330 MB |    1108 MB |   35938 MB |   35608 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  107067 KB |    6053 MB |  179413 GB |  179413 GB |
+|       from large pool |   72682 KB |    5950 MB |  143247 GB |  143247 GB |
+|       from small pool |   34385 KB |     245 MB |   36165 GB |   36165 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    3133    |    3271    |  144392 K  |  144389 K  |
+|       from large pool |    1692    |    2002    |   38706 K  |   38704 K  |
+|       from small pool |    1441    |    2731    |  105686 K  |  105684 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    3133    |    3271    |  144392 K  |  144389 K  |
+|       from large pool |    1692    |    2002    |   38706 K  |   38704 K  |
+|       from small pool |    1441    |    2731    |  105686 K  |  105684 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     554    |     919    |   27653    |   27099    |
+|       from large pool |     389    |     407    |    9684    |    9295    |
+|       from small pool |     165    |     554    |   17969    |   17804    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     188    |     686    |   83508 K  |   83508 K  |
+|       from large pool |      48    |     299    |   28194 K  |   28194 K  |
+|       from small pool |     140    |     579    |   55313 K  |   55313 K  |
+|===========================================================================|
+
+| epoch 003:    400 / 1218 loss=0.502, nll_loss=0.003, ppl=1, wps=485, ups=0, wpb=1152.264, bsz=7.985, num_updates=2834, lr=5.82456e-07, gnorm=56.573, clip=0.000, oom=0.010, loss_scale=16.000, wall=7057, train_wall=6724, accuracy=0.87133
+| epoch 003:    425 / 1218 loss=0.500, nll_loss=0.003, ppl=1, wps=485, ups=0, wpb=1151.131, bsz=7.986, num_updates=2859, lr=4.94737e-07, gnorm=56.132, clip=0.000, oom=0.010, loss_scale=16.000, wall=7115, train_wall=6782, accuracy=0.871546
+| epoch 003:    450 / 1218 loss=0.499, nll_loss=0.003, ppl=1, wps=485, ups=0, wpb=1152.565, bsz=7.987, num_updates=2884, lr=4.07018e-07, gnorm=55.992, clip=0.000, oom=0.010, loss_scale=16.000, wall=7175, train_wall=6841, accuracy=0.87146
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 14.73 GiB total capacity; 13.86 GiB already allocated; 15.88 MiB free; 13.95 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 29           |        cudaMalloc retries: 113       |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14194 MB |   14248 MB |  176722 GB |  176708 GB |
+|       from large pool |   14022 MB |   14029 MB |  143986 GB |  143972 GB |
+|       from small pool |     172 MB |    1069 MB |   32736 GB |   32736 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14194 MB |   14248 MB |  176722 GB |  176708 GB |
+|       from large pool |   14022 MB |   14029 MB |  143986 GB |  143972 GB |
+|       from small pool |     172 MB |    1069 MB |   32736 GB |   32736 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14284 MB |   14296 MB |  314562 MB |  300278 MB |
+|       from large pool |   14068 MB |   14098 MB |  277844 MB |  263776 MB |
+|       from small pool |     216 MB |    1108 MB |   36718 MB |   36502 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |   91367 KB |    6053 MB |  184188 GB |  184188 GB |
+|       from large pool |   47047 KB |    5950 MB |  147043 GB |  147043 GB |
+|       from small pool |   44320 KB |     245 MB |   37145 GB |   37145 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2965    |    3271    |  148298 K  |  148295 K  |
+|       from large pool |    1794    |    2002    |   39745 K  |   39743 K  |
+|       from small pool |    1171    |    2731    |  108553 K  |  108552 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2965    |    3271    |  148298 K  |  148295 K  |
+|       from large pool |    1794    |    2002    |   39745 K  |   39743 K  |
+|       from small pool |    1171    |    2731    |  108553 K  |  108552 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     497    |     919    |   28334    |   27837    |
+|       from large pool |     389    |     407    |    9975    |    9586    |
+|       from small pool |     108    |     554    |   18359    |   18251    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     144    |     686    |   85796 K  |   85796 K  |
+|       from large pool |      34    |     299    |   28963 K  |   28963 K  |
+|       from small pool |     110    |     579    |   56832 K  |   56832 K  |
+|===========================================================================|
+
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 14.73 GiB total capacity; 13.72 GiB already allocated; 3.88 MiB free; 13.96 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 30           |        cudaMalloc retries: 116       |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14021 MB |   14248 MB |  177653 GB |  177640 GB |
+|       from large pool |   13851 MB |   14029 MB |  144751 GB |  144738 GB |
+|       from small pool |     170 MB |    1069 MB |   32902 GB |   32901 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14021 MB |   14248 MB |  177653 GB |  177640 GB |
+|       from large pool |   13851 MB |   14029 MB |  144751 GB |  144738 GB |
+|       from small pool |     170 MB |    1069 MB |   32902 GB |   32901 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14296 MB |   14296 MB |  322006 MB |  307710 MB |
+|       from large pool |   14076 MB |   14098 MB |  284396 MB |  270320 MB |
+|       from small pool |     220 MB |    1108 MB |   37610 MB |   37390 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  247963 KB |    6053 MB |  185222 GB |  185222 GB |
+|       from large pool |  196772 KB |    5950 MB |  147889 GB |  147888 GB |
+|       from small pool |   51191 KB |     245 MB |   37333 GB |   37333 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2993    |    3271    |  149053 K  |  149050 K  |
+|       from large pool |    1814    |    2002    |   39953 K  |   39951 K  |
+|       from small pool |    1179    |    2731    |  109099 K  |  109098 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2993    |    3271    |  149053 K  |  149050 K  |
+|       from large pool |    1814    |    2002    |   39953 K  |   39951 K  |
+|       from small pool |    1179    |    2731    |  109099 K  |  109098 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     541    |     921    |   29060    |   28519    |
+|       from large pool |     431    |     431    |   10255    |    9824    |
+|       from small pool |     110    |     554    |   18805    |   18695    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     275    |     686    |   86238 K  |   86237 K  |
+|       from large pool |     154    |     299    |   29118 K  |   29117 K  |
+|       from small pool |     121    |     579    |   57120 K  |   57120 K  |
+|===========================================================================|
+
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 14.73 GiB total capacity; 13.79 GiB already allocated; 15.88 MiB free; 13.95 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 31           |        cudaMalloc retries: 121       |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   13858 MB |   14248 MB |  177680 GB |  177666 GB |
+|       from large pool |   13499 MB |   14029 MB |  144774 GB |  144761 GB |
+|       from small pool |     359 MB |    1069 MB |   32905 GB |   32905 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   13858 MB |   14248 MB |  177680 GB |  177666 GB |
+|       from large pool |   13499 MB |   14029 MB |  144774 GB |  144761 GB |
+|       from small pool |     359 MB |    1069 MB |   32905 GB |   32905 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14284 MB |   14296 MB |  330214 MB |  315930 MB |
+|       from large pool |   13904 MB |   14098 MB |  291772 MB |  277868 MB |
+|       from small pool |     380 MB |    1108 MB |   38442 MB |   38062 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  167368 KB |    6053 MB |  185246 GB |  185246 GB |
+|       from large pool |  148452 KB |    5950 MB |  147909 GB |  147909 GB |
+|       from small pool |   18916 KB |     245 MB |   37337 GB |   37337 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    3052    |    3271    |  149070 K  |  149067 K  |
+|       from large pool |    1466    |    2002    |   39958 K  |   39956 K  |
+|       from small pool |    1586    |    2731    |  109111 K  |  109110 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    3052    |    3271    |  149070 K  |  149067 K  |
+|       from large pool |    1466    |    2002    |   39958 K  |   39956 K  |
+|       from small pool |    1586    |    2731    |  109111 K  |  109110 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     668    |     921    |   29886    |   29218    |
+|       from large pool |     478    |     478    |   10665    |   10187    |
+|       from small pool |     190    |     554    |   19221    |   19031    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     272    |     686    |   86247 K  |   86247 K  |
+|       from large pool |     105    |     299    |   29121 K  |   29121 K  |
+|       from small pool |     167    |     579    |   57126 K  |   57125 K  |
+|===========================================================================|
+
+| epoch 003:    475 / 1218 loss=0.504, nll_loss=0.003, ppl=1, wps=485, ups=0, wpb=1152.859, bsz=7.975, num_updates=2909, lr=3.19298e-07, gnorm=56.055, clip=0.000, oom=0.011, loss_scale=16.000, wall=7237, train_wall=6902, accuracy=0.869863
+| epoch 003:    500 / 1218 loss=0.500, nll_loss=0.003, ppl=1, wps=485, ups=0, wpb=1153.970, bsz=7.976, num_updates=2934, lr=2.31579e-07, gnorm=56.472, clip=0.000, oom=0.011, loss_scale=16.000, wall=7296, train_wall=6961, accuracy=0.870621
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 16.00 MiB (GPU 0; 14.73 GiB total capacity; 13.91 GiB already allocated; 3.88 MiB free; 13.96 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 32           |        cudaMalloc retries: 124       |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   14246 MB |   14248 MB |  180731 GB |  180717 GB |
+|       from large pool |   13912 MB |   14029 MB |  147261 GB |  147248 GB |
+|       from small pool |     333 MB |    1069 MB |   33469 GB |   33469 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   14246 MB |   14248 MB |  180731 GB |  180717 GB |
+|       from large pool |   13912 MB |   14029 MB |  147261 GB |  147248 GB |
+|       from small pool |     333 MB |    1069 MB |   33469 GB |   33469 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14296 MB |   14296 MB |  337966 MB |  323670 MB |
+|       from large pool |   13952 MB |   14098 MB |  298832 MB |  284880 MB |
+|       from small pool |     344 MB |    1108 MB |   39134 MB |   38790 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |   50812 KB |    6053 MB |  188430 GB |  188430 GB |
+|       from large pool |   40234 KB |    5950 MB |  150449 GB |  150449 GB |
+|       from small pool |   10578 KB |     245 MB |   37980 GB |   37980 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2762    |    3271    |  151637 K  |  151635 K  |
+|       from large pool |    1365    |    2002    |   40642 K  |   40641 K  |
+|       from small pool |    1397    |    2731    |  110995 K  |  110994 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2762    |    3271    |  151637 K  |  151635 K  |
+|       from large pool |    1365    |    2002    |   40642 K  |   40641 K  |
+|       from small pool |    1397    |    2731    |  110995 K  |  110994 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     557    |     921    |   30523    |   29966    |
+|       from large pool |     385    |     478    |   10956    |   10571    |
+|       from small pool |     172    |     554    |   19567    |   19395    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     129    |     686    |   87747 K  |   87747 K  |
+|       from large pool |      25    |     299    |   29623 K  |   29623 K  |
+|       from small pool |     104    |     579    |   58123 K  |   58123 K  |
+|===========================================================================|
+
+| WARNING: attempting to recover from OOM in forward/backward pass
+| OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 16.00 MiB (GPU 0; 14.73 GiB total capacity; 13.65 GiB already allocated; 9.88 MiB free; 13.96 GiB reserved in total by PyTorch)
+|===========================================================================|
+|                  PyTorch CUDA memory summary, device ID 0                 |
+|---------------------------------------------------------------------------|
+|            CUDA OOMs: 33           |        cudaMalloc retries: 127       |
+|===========================================================================|
+|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
+|---------------------------------------------------------------------------|
+| Allocated memory      |   13980 MB |   14248 MB |  180770 GB |  180756 GB |
+|       from large pool |   13664 MB |   14029 MB |  147295 GB |  147281 GB |
+|       from small pool |     315 MB |    1069 MB |   33475 GB |   33475 GB |
+|---------------------------------------------------------------------------|
+| Active memory         |   13980 MB |   14248 MB |  180770 GB |  180756 GB |
+|       from large pool |   13664 MB |   14029 MB |  147295 GB |  147281 GB |
+|       from small pool |     315 MB |    1069 MB |   33475 GB |   33475 GB |
+|---------------------------------------------------------------------------|
+| GPU reserved memory   |   14290 MB |   14296 MB |  345820 MB |  331530 MB |
+|       from large pool |   13918 MB |   14098 MB |  306180 MB |  292262 MB |
+|       from small pool |     372 MB |    1108 MB |   39640 MB |   39268 MB |
+|---------------------------------------------------------------------------|
+| Non-releasable memory |  317074 KB |    6053 MB |  188466 GB |  188466 GB |
+|       from large pool |  259592 KB |    5950 MB |  150479 GB |  150479 GB |
+|       from small pool |   57482 KB |     245 MB |   37987 GB |   37987 GB |
+|---------------------------------------------------------------------------|
+| Allocations           |    2994    |    3271    |  151666 K  |  151663 K  |
+|       from large pool |    1619    |    2002    |   40650 K  |   40649 K  |
+|       from small pool |    1375    |    2731    |  111015 K  |  111014 K  |
+|---------------------------------------------------------------------------|
+| Active allocs         |    2994    |    3271    |  151666 K  |  151663 K  |
+|       from large pool |    1619    |    2002    |   40650 K  |   40649 K  |
+|       from small pool |    1375    |    2731    |  111015 K  |  111014 K  |
+|---------------------------------------------------------------------------|
+| GPU reserved segments |     666    |     921    |   31185    |   30519    |
+|       from large pool |     480    |     480    |   11365    |   10885    |
+|       from small pool |     186    |     554    |   19820    |   19634    |
+|---------------------------------------------------------------------------|
+| Non-releasable allocs |     366    |     686    |   87763 K  |   87762 K  |
+|       from large pool |     165    |     299    |   29629 K  |   29629 K  |
+|       from small pool |     201    |     579    |   58133 K  |   58133 K  |
+|===========================================================================|
+
+| epoch 003:    525 / 1218 loss=0.498, nll_loss=0.003, ppl=1, wps=485, ups=0, wpb=1152.973, bsz=7.970, num_updates=2959, lr=1.4386e-07, gnorm=56.743, clip=0.000, oom=0.011, loss_scale=16.000, wall=7355, train_wall=7019, accuracy=0.870706
+| epoch 003:    550 / 1218 loss=0.499, nll_loss=0.003, ppl=1, wps=485, ups=0, wpb=1153.218, bsz=7.971, num_updates=2984, lr=5.61404e-08, gnorm=56.739, clip=0.000, oom=0.011, loss_scale=16.000, wall=7415, train_wall=7079, accuracy=0.869991
+| epoch 003 | loss 0.498 | nll_loss 0.003 | ppl 1 | wps 485 | ups 0 | wpb 1153.485 | bsz 7.972 | num_updates 3000 | lr 0 | gnorm 56.652 | clip 0.000 | oom 0.011 | loss_scale 16.000 | wall 7453 | train_wall 7117 | accuracy 0.870575
+| WARNING: attempting to recover from OOM in forward/backward pass
+| epoch 003 | valid on 'valid' subset | loss 1.062 | nll_loss 0.007 | ppl 1.01 | num_updates 3000 | best_accuracy 0.762684 | accuracy 0.761866
+| done training in 7464.5 seconds

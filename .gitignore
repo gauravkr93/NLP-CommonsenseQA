@@ -1,2 +1,5 @@
 checkpoint_*.pt
-CommonsenseQA.zip
+*.zip
+*sentences.txt
+*_*.tsv
+*_*.jsonl
