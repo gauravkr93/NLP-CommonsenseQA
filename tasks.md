@@ -31,7 +31,7 @@
     - Questions with not are also to be dealt properly.
     - Questions with negation are also to be taken care of.
     - Used nltk and geotext libraries to perform the analysis based on NNP tags.
-- Studied a paper on ARC dataset. However, this might not help more as it does not have much information about objects and their locations. ARC dataset mainly has information about Scientific data which might not help our usecase.
+- Studied paper on various datasets mentioned by kuntal. I along with shafali worked on knowledgebases like arc, verbphysics, CODAH in order to improve accuracy. Thought verbphysics could help our usecase based on our error analysis but did not implement it as the object pairs were difficult to concert into the format we needed.
 
 ## Praveen
 - Analysis of the baseline model and two additional models from the leaderboard
