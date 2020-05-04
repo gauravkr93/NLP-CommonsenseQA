@@ -90,8 +90,8 @@ Following 3 experiments were tried:
  
  ## Conclusion
 We did our research and came up with two techniques we thought would help us improving the efficiency of the baseline model.
-###
-We explored our options with the Graph based approaches to introduce knowledge base and also tried the same with Information retrieval. Our detailed analysis of why and why not such techniques can be integrated with the baseline model is discussed in previous sections.
-###
-We also suggested using webchild and verb physics datasets to extract useful information in order to overcome the errors we encountered in the baseline model which are discussed in the aforementioned error analysis section. Proceeding with verb physics wasn't a viable option eventually because the object- object pairing to multiple action frames would not give much information for each object in our errors. So instead we came up with a different approach to use a combination of webchild, arc, openbookqa and atomic dataset to deal with error questions and injecting such a knowledgebase to try and improve the accuracy of the baseline model.
-  Each approach is listed in the previous section with their respective outcomes.
+
+1.We explored our options with the Graph based approaches to introduce knowledge base and also tried the same with Information retrieval. Our detailed analysis of why and why not such techniques can be integrated with the baseline model is discussed in previous sections.
+
+2.We also suggested using webchild and verb physics datasets to extract useful information in order to overcome the errors we encountered in the baseline model which are discussed in the aforementioned error analysis section. Proceeding with verb physics wasn't a viable option eventually because the object- object pairing to multiple action frames would not give much information for each object in our errors. So instead we came up with a different approach to use a combination of webchild, arc, openbookqa and atomic dataset to deal with error questions and injecting such a knowledgebase to try and improve the accuracy of the baseline model.
+Each approach is listed in the previous section with their respective outcomes.
