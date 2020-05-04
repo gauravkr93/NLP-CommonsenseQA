@@ -16,7 +16,7 @@
 
 
 ## Vasudha
-- Analysis of Baseline Models.
+- Ran and did analysis of Baseline Models.
 - Analysis of two additional Models from the leaderboard.
 - Worked on nltk and geotext libraries to extract proper nouns for location specific details.
 - Read about BERT.
